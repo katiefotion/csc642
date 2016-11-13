@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>CSC 642 Registration Site Fall 2016</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -21,7 +21,7 @@
     .sidenav {
       padding-top: 20px;
       background-color: #f1f1f1;
-      height: 100%;
+      height: 150%;
     }
     
     /* Set black background color, white text and some padding */
@@ -39,6 +39,28 @@
       }
       .row.content {height:auto;}
     }
+	/* This creates a button using text */
+	.textbutton {
+	background:none;
+	border:none;
+	margin:0;
+	padding:0;
+	font-size:150%;
+	color:blue;
+	}
+	
+	/* Text Indentation */
+	.indent1 {
+		font-size: 125%;
+		text-indent: 15px;
+	}
+	
+	/* Grayed out text*/
+	.graytext {
+		font-size: 125%;
+		color:gray;
+	}
+	
   </style>
 </head>
 <body>
@@ -67,53 +89,42 @@
     </div>
   </div>
 </nav>
-  
-<div class="container-fluid text-center">
+
+<div class="container-fluid">
   <div class="row content">
     <div class="col-sm-2 sidenav">
 <ul class="nav nav-pills nav-stacked">
-  <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Department
-    <span class="caret"></span></a>
-    <ul class="dropdown-menu">
-      <li><a href="#">Submenu 1-1</a></li>
-      <li><a href="#">Submenu 1-2</a></li>
-      <li><a href="#">Submenu 1-3</a></li> 
-    </ul>
-  </li>
-<li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Lower Division
-    <span class="caret"></span></a>
-    <ul class="dropdown-menu">
-      <li><a href="#">Submenu 1-1</a></li>
-      <li><a href="#">Submenu 1-2</a></li>
-      <li><a href="#">Submenu 1-3</a></li> 
-    </ul>
-  </li>
-  <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Upper Division
-    <span class="caret"></span></a>
-    <ul class="dropdown-menu">
-      <li><a href="#">Submenu 1-1</a></li>
-      <li><a href="#">Submenu 1-2</a></li>
-      <li><a href="#">Submenu 1-3</a></li> 
-    </ul>
-  </li>
+<!-- The 3 buttons on the sides for the requirements -->
+  <button type="button" class="textbutton" data-toggle="collapse" data-target="#lowerge">Lower General Education</button>
+  <div id="lowerge" class="collapse">
+	<p class = "indent1">Area A <br> </p>
+	<p class = "indent1">Area B <br> </p>
+	<p class = "indent1">Area C <br> </p>
+	<p class = "indent1">Area D <br> </p>
+	<p class = "indent1">Area E <br> </p>
+  </div>
+  <button type="button" class="textbutton" data-toggle="collapse" data-target="#upperge">Upper General Education</button>
+  <div id="upperge" class="collapse">
+	<p class = "indent1">UD - B <br> </p>
+	<p class = "indent1">UD - C <br> </p>
+	<p class = "indent1">UD - D <br> </p>
+  </div>
+  <button type="button" class="textbutton" data-toggle="collapse" data-target="#csreq">Computer Science</button>
+  <div id="csreq" class="collapse">
+	<p class = "indent1">Mathematics and Physics<br> </p>
+	<p class = "indent1">Core Computer Science<br> </p>
+	<p class = "indent1">Advanced Computer Science <br> </p>
+	<p class = "indent1">Computer Science Electives<br> </p>
+  </div>
+
 </ul>
     </div>
     <div class="col-sm-8 text-left">
       <h1>Welcome</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <hr>
-      <h3>Test</h3>
-      <p>Lorem ipsum...</p>
+      <h2>Please begin by selecting a section on the left</h2>
     </div>
     <div class="col-sm-2 sidenav">
-      <div class="well">
-        <p>ADS</p>
-      </div>
-      <div class="well">
-        <p>ADS</p>
+		<p class = "graytext">Please select a section on the left</p>
       </div>
     </div>
   </div>
