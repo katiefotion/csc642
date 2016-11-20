@@ -7,9 +7,28 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("src", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("src");
+        
+        var nodeCopy = document.getElementById(data).cloneNode(true);
+        nodeCopy.id = "newID"; 
+        ev.target.appendChild(nodeCopy);
+    }
+  </script>
+  
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */
     .navbar {
@@ -43,8 +62,8 @@
       .row.content {height:auto;}
     }
     
-    /* This creates a button using text */
-    .textbutton {
+    /* This creates a header button using text */
+    .headerbutton {
 	background: #475233;
         border: solid gray;
 	margin:5px;
@@ -54,41 +73,96 @@
         text-align: left;
         outline: none;
     }
+    
+    .subheaderbutton {
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        border-bottom: solid;
+        background: none;
+        font-size: 100%;
+        text-indent: 0;
+        padding: 2px;
+        margin: 5px;
+        text-align: left;
+        width: 150px;
+        float: left;
+        overflow: hidden;
+        outline:none;
+    }
 	
-	/* Text Indentation */
-	.indent1 {
-            font-size: 100%;
-            text-indent: 0;
-            padding: 2px;
-            margin: 5px;
-	}
+    .courses {
+        border: none;
+        background: none;
+        font-size: 100%;
+        text-indent: 20px;
+        padding: 2px;
+        margin: 5px;
+        text-align: left;
+        width: 150px;
+        float: left;
+        overflow: hidden;
+        outline:none;
+    }
 	
-	/* Grayed out text*/
-	.graytext {
-            font-size: 125%;
-            color:gray;
-	}
+    /* Grayed out text*/
+    .graytext {
+        font-size: 125%;
+        color:gray;
+    }
         
-        /* Grayed out text with dashed outline*/
-	.graytext2 {
-            font-size: 125%;
-            color:gray;
-            border: dashed;
-            border-radius: 10px;
-            height: 500px;
-            text-align: center;
-            padding-top: 200px;
-            padding-right: 15px;
-            padding-left: 15px;
-	}
-        
-        .checkmark {
-            color: green;
-            text-align:right; 
-        }
+    /* Grayed out text with dashed outline*/
+    .graytext2 {
+        font-size: 125%;
+        color:gray;
+        border: dashed;
+        border-radius: 10px;
+        height: 500px;
+        text-align: center;
+        padding-top: 200px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    
+    .graytext3 {
+        font-size: 125%;
+        color:gray;
+        border: dashed;
+        border-radius: 10px;
+        height: 450px;
+        text-align: center;
+        padding-top: 200px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .checkmark {
+        color: green;
+        text-align:right; 
+        padding-top: 8px;
+        padding-right: 5px;
+        float: right;
+        overflow: hidden;
+    }
+    
+    .xmark {
+        color: red;
+        text-align:right; 
+        padding-top: 10px;
+        padding-right: 5px;
+        float: right;
+        overflow: hidden;
+    }
+    
+    .subheader {
+        margin-left: 5px;
+        margin-right: 5px;
+        background: darkgrey;
+    }
 	
   </style>
 </head>
+
 <body>
 
 <nav class="navbar navbar-inverse">
@@ -102,15 +176,9 @@
       <a class="navbar-brand mb-0">Requirements</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <!--<ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>-->
       <ul class="nav navbar-nav navbar-right">
         <li><a class="navbar-brand mb-0">Schedule</a>
-</li>
+        </li>
       </ul>
     </div>
   </div>
@@ -120,47 +188,297 @@
   <div class="row content">
     <div class="col-sm-2 sidenav">
 
-<!-- The 3 buttons on the sides for the requirements -->
-<button type="button" class="textbutton" data-toggle="collapse" data-target="#lowerge"> <b>Lower Division General Education</b></button>
-<div id="lowerge" class="collapse">
-    <p class = "indent1"> <b>Area A:</b> English Language Communication and Critical Thinking <br> </p>
-    <p class = "checkmark"> &#x2714 </p>
-    <p class = "indent1"> <b>Area B:</b> Scientific Inquiry and Quantitative Reasoning <br> </p>
-    <p class = "indent1"> <b>Area C:</b> Arts and Humanities <br> </p>
-    <p class = "indent1"> <b>Area D:</b> Social Sciences <br> </p>
-    <p class = "indent1"> <b>Area E:</b> Lifelong Learning and Self-development <br> </p>
-</div>
+        <!-- Computer Science requirements section -->
+        <button type="button" class="headerbutton" data-toggle="collapse" data-target="#csreq"> <b>Computer Science</b> </button>
+        <div id="csreq" class="collapse">
+            
+            <div id="src" draggable="true" ondragstart="drag(event)">
+                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#mathPhys"><b>Mathematics and Physics</b> (22 units)</button>
+                <p class = "xmark"> &#x2717; </p>
+                <div style="clear: both"> </div>
 
-<button type="button" class="textbutton" data-toggle="collapse" data-target="#upperge"> <b>Upper Division General Education</b> </button>
-<div id="upperge" class="collapse">
-    <p class = "indent1"> <b>UD-B:</b> Upper Division Physical and/or Life Sciences <br> </p>
-    <p class = "indent1"> <b>UD-C:</b> Upper Division Arts and/or Humanities <br> </p>
-    <p class = "indent1"> <b>UD-D:</b> Upper Division Social Sciences <br> </p>
-</div>
+                <div id="mathPhys" class="collapse">
+                    <div> 
+                        <button type="button" class="courses">MATH 226 (4)</button>
+                        <p class = "checkmark"> &#x2714; </p>
+                    </div>
+                    <div style="clear: both"> </div>
 
-<button type="button" class="textbutton" data-toggle="collapse" data-target="#csreq"> <b>Major: Computer Science</b> </button>
-<div id="csreq" class="collapse">
-    <p class = "indent1">Mathematics and Physics<br> </p>
-    <p class = "indent1">Science Elective<br> </p>
-    <p class = "indent1">Core Computer Science Requirements <br> </p>
-    <p class = "indent1">Advanced Computer Science Requirements <br> </p>
-    <p class = "indent1">Electives<br> </p>
-</div>
+                    <div> 
+                        <button type="button" class="courses">MATH 227 (4)</button>
+                        <p class = "checkmark"> &#x2714; </p>
+                    </div>
+                    <div style="clear: both"> </div>    
 
+                    <div> 
+                        <button type="button" class="courses">MATH 324 (3)</button>
+                        <p class = "checkmark"> &#x2714; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+
+                    <div> 
+                        <button type="button" class="courses">MATH 325 (3)</button>
+                        <p class = "xmark"> &#x2717; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+
+                    <div> 
+                        <button type="button" class="courses">PHYS 220 (3)</button>
+                        <p class = "checkmark"> &#x2714; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+
+                    <div> 
+                        <button type="button" class="courses">PHYS 222 (1)</button>
+                        <p class = "xmark"> &#x2717; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+
+                    <div> 
+                        <button type="button" class="courses">PHYS 230 (3)</button>
+                        <p class = "xmark"> &#x2717; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+
+                    <div> 
+                        <button type="button" class="courses">PHYS 232 (1)</button>
+                        <p class = "xmark"> &#x2717; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+                </div>
+            </div>
+            
+            <div>
+                <div>
+                    <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#science">
+                        <b>Science Elective</b> (3 units) 
+                    </button>
+                    <p class = "checkmark"> &#x2714; </p>
+                </div>
+                <div style="clear: both"> </div> 
+                
+                <div id="science" class="collapse">
+                    <div>
+                        <button type="button" class="courses">BIOL 100 (3)</button>
+                        <p class="checkmark"> &#x2714; </p>
+                    </div> 
+                    <div style="clear: both"> </div> 
+                    
+                    <div>
+                        <button type="button" class="courses">BIOL 176 (3)</button>
+                    </div> 
+                    <div style="clear: both"> </div> 
+                </div>
+                
+            </div>
+            
+            <div>
+                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#coreCS">
+                    <b>Core Computer Science</b> (22 units) 
+                </button>
+                <p class = "checkmark"> &#x2714; </p>
+                <div style="clear: both"> </div> 
+                
+                <div id="coreCS" class="collapse"> 
+                    <div>
+                        <button type="button" class="courses">CSC 210 (3)</button>
+                        <p class="checkmark"> &#x2714; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+                
+                    <div>
+                        <button type="button" class="courses">CSC 220 (3)</button>
+                        <p class="checkmark"> &#x2714; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+                
+                    <div> 
+                        <button type="button" class="courses">CSC 230 (3)</button>
+                        <p class="checkmark"> &#x2714; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+                
+                    <div> 
+                        <button type="button" class="courses">CSC 256 (3)</button>
+                        <p class="checkmark"> &#x2714; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+                
+                    <div> 
+                        <button type="button" class="courses">CSC 300GW (3)</button>
+                        <p class="checkmark"> &#x2714; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+                
+                    <div> 
+                        <button type="button" class="courses">CSC 340 (3)</button>
+                        <p class="checkmark"> &#x2714; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+                
+                    <div> 
+                        <button type="button" class="courses">CSC 412 (1)</button>
+                        <p class="checkmark"> &#x2714; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+                
+                    <div> 
+                        <button type="button" class="courses">CSC 413 (3)</button>
+                        <p class="checkmark"> &#x2714; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+                </div>
+            </div>
+            
+            <div>
+                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#advCS">
+                    <b>Advanced Computer Science </b> (24 units) 
+                 </button>
+                <p class = "xmark"> &#x2717; </p>
+                <div style="clear: both"> </div> 
+                
+                <div id="advCS" class="collapse"> 
+                    <div>
+                        <button type="button" class="courses">CSC 415 (3)</button>
+                        <p class="checkmark"> &#x2714; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+                    
+                    <div>
+                        <button type="button" class="courses">CSC 510 (3)</button>
+                        <p class="checkmark"> &#x2714; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+                    
+                    <div>
+                        <button type="button" class="courses">CSC 600 (3)</button>
+                        <p class="xmark"> &#x2717; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+                    
+                    <div>
+                        <button type="button" class="courses">CSC 648 (3)</button>
+                        <p class="xmark"> &#x2717; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+                    
+                    <div>
+                        <button type="button" class="courses">CSC 520 (3)</button>
+                        <p class="checkmark"> &#x2714; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+
+                    <div>
+                        <button type="button" class="courses">CSC 656 (3)</button>
+                        <p class="xmark"> &#x2717; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+
+                    <div>
+                        <button type="button" class="courses">CSC 675 (3)</button>
+                        <p class="checkmark"> &#x2714; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+
+                    <div>
+                        <button type="button" class="courses">CSC 668 (3)</button>
+                        <p class="xmark"> &#x2717; </p>
+                    </div>
+                    <div style="clear: both"> </div> 
+                    
+                </div>
+            </div>
+        </div>
+        <div style="clear: both"> </div>
+
+        <!-- Lower division GE requirements section -->
+        <button type="button" class="headerbutton" data-toggle="collapse" data-target="#lowerge"> <b>Lower Division General Education</b></button>
+        <div id="lowerge" class="collapse">
+            <div>
+                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#areaA"> 
+                    <b>Area A:</b> English Language Communication and Critical Thinking <br>
+                </button>
+                <p class = "checkmark"> &#x2714; </p>
+                
+            </div>
+            <div style="clear: both"> </div>
+            
+            <div>
+                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#areaB"> 
+                    <b>Area B:</b> Scientific Inquiry and Quantitative Reasoning <br>
+                </button>
+                <p class = "xmark"> &#x2717; </p>
+            </div>
+            <div style="clear: both"> </div>
+            
+            <div>
+                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#areaC"> 
+                    <b>Area C:</b> Arts and Humanities <br> 
+                </button>
+                <p class = "xmark"> &#x2717; </p>
+            </div>
+            <div style="clear: both"> </div>
+            
+            <div>
+                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#areaD"> 
+                    <b>Area D:</b> Social Sciences <br> 
+                    </button>
+                <p class = "checkmark"> &#x2714; </p>
+            </div>
+            <div style="clear: both"> </div>
+            
+            <div>
+                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#areaE"> 
+                    <b>Area E:</b> Lifelong Learning and Self-development <br> 
+                </button>
+                <p class = "checkmark"> &#x2714; </p>
+            </div>
+            <div style="clear: both"> </div>
+        </div>
+
+        <!-- Upper division GE requirements section -->
+        <button type="button" class="headerbutton" data-toggle="collapse" data-target="#upperge"> <b>Upper Division General Education</b> </button>
+        <div id="upperge" class="collapse">
+            
+            <div>
+                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#UDB"> 
+                    <b>UD-B:</b> Upper Division Physical and/or Life Sciences <br> 
+                </button>
+                <p class = "xmark"> &#x2717; </p>
+            </div>
+            <div style="clear: both"> </div>
+            
+            <div>
+                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#UDC"> 
+                    <b>UD-C:</b> Upper Division Arts and/or Humanities <br> 
+                </button>
+                <p class = "checkmark"> &#x2714; </p>
+            </div>
+            <div style="clear: both"> </div>
+            
+            <div>
+                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#UDD"> 
+                    <b>UD-D:</b> Upper Division Social Sciences <br> 
+                </button>
+                <p class = "xmark"> &#x2717; </p>
+            </div>
+            <div style="clear: both"> </div>
+                
+        </div>
+        
     </div>
-    <div class="col-sm-8 text-left">
-        <h1> <b> Welcome </b></h1>
-      <h2>Please begin by selecting a section on the left</h2>
+    <div class="col-sm-8 text-left" id="target" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h1> <b> Spring 2017 Course Offerings </b></h1>
+        <p class="graytext3"> Please begin by dragging a section from the left</p>
     </div>
-      <div class="col-sm-2 sidenav">
-          <p class= "graytext2"> Drag courses here to view in schedule</p>
-      </div>
+    <div class="col-sm-2 sidenav" >
+        <p class= "graytext2"> Drag courses here to view in schedule</p>
     </div>
   </div>
 </div>
 
 <footer class="container-fluid text-center">
-  <p>CSC 642 Human Computer Interaction Project - Fall 2016</p>
+    <p>CSC 642 Human Computer Interaction Project - Fall 2016</p>
 </footer>
 
 </body>
