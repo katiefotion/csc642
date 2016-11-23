@@ -11,21 +11,104 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
   <script>
+    
+    var emptyOfferings = true;
+      
     function allowDrop(ev) {
         ev.preventDefault();
     }
 
     function drag(ev) {
-        ev.dataTransfer.setData("src", ev.target.id);
+        ev.dataTransfer.setData("text", ev.target.id);
     }
 
     function drop(ev) {
         ev.preventDefault();
-        var data = ev.dataTransfer.getData("src");
+        var data = ev.dataTransfer.getData("text");
         
-        var nodeCopy = document.getElementById(data).cloneNode(true);
-        nodeCopy.id = "newID"; 
-        ev.target.appendChild(nodeCopy);
+        if(Boolean(emptyOfferings)) {
+            ev.target.removeChild(ev.target.childNodes[0]);
+            ev.target.style.border = "none";
+        }
+        
+        var header = document.createElement("div");
+        
+        var p1 = document.createElement("p");
+        var title1 = document.createTextNode("Course");
+        p1.appendChild(title1);
+        p1.style.position = "absolute";
+        p1.style.top = "100px";
+        p1.style.left = "45px";
+        
+        var p2 = document.createElement("p");
+        var title2 = document.createTextNode("Title");
+        p2.appendChild(title2);
+        p2.style.position = "absolute";
+        p2.style.top = "100px";
+        p2.style.left = "275px";
+        
+        var p3 = document.createElement("p");
+        var title3 = document.createTextNode("Units");
+        p3.appendChild(title3);
+        p3.style.position = "absolute";
+        p3.style.top = "100px";
+        p3.style.left = "700px";
+        
+        header.appendChild(p1);
+        header.appendChild(p2);
+        header.appendChild(p3);
+        ev.target.appendChild(header);
+        
+        header.style.clear = "both";
+        
+        if(data === "math") {
+            
+            //////// Math 226 button //////////
+            
+            var btn = document.createElement("BUTTON");
+            btn.style.color = "black";
+            btn.style.backgroundColor = "antiquewhite";
+            btn.style.border = "none";
+            btn.style.outline = "none";
+            btn.style.padding = "10px";
+            btn.style.width = "800px";
+            btn.style.height = "45px";
+            btn.style.position = "absolute";
+            btn.style.left = "25px";
+            btn.style.top = "150px";
+            
+            var courseName = document.createElement("div");
+            var name = document.createTextNode("MATH 226");
+            courseName.style.position = "absolute";
+            courseName.style.textAlign = "left";
+            courseName.style.left = "20px";
+            courseName.style.top = "10px";
+            courseName.appendChild(name);
+            
+            var courseTitle = document.createElement("div");
+            var title = document.createTextNode("Calculus I");
+            courseTitle.style.position = "absolute";
+            courseTitle.style.textAlign = "left";
+            courseTitle.style.left = "250px";
+            courseTitle.style.top = "10px";
+            courseTitle.appendChild(title);
+            
+            var numUnits = document.createElement("div");
+            var units = document.createTextNode("4");
+            numUnits.style.position = "absolute";
+            numUnits.style.textAlign = "left";
+            numUnits.style.left = "680px";
+            numUnits.style.top = "10px";
+            numUnits.appendChild(units);
+            
+            btn.appendChild(courseName);
+            btn.appendChild(courseTitle);
+            btn.appendChild(numUnits);
+            
+            ev.target.appendChild(btn);
+            
+            emptyOfferings = false;
+        }
     }
   </script>
   
@@ -192,7 +275,7 @@
         <button type="button" class="headerbutton" data-toggle="collapse" data-target="#csreq"> <b>Computer Science</b> </button>
         <div id="csreq" class="collapse">
             
-            <div id="src" draggable="true" ondragstart="drag(event)">
+            <div id="math" draggable="true" ondragstart="drag(event)">
                 <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#mathPhys"><b>Mathematics and Physics</b> (22 units)</button>
                 <p class = "xmark"> &#x2717; </p>
                 <div style="clear: both"> </div>
@@ -248,13 +331,10 @@
                 </div>
             </div>
             
-            <div>
-                <div>
-                    <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#science">
-                        <b>Science Elective</b> (3 units) 
-                    </button>
-                    <p class = "checkmark"> &#x2714; </p>
-                </div>
+            <div id="sci" draggable="true" ondragstart="drag(event)">
+                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#science">
+                        <b>Science Elective</b> (3 units) </button>
+                <p class = "checkmark"> &#x2714; </p>
                 <div style="clear: both"> </div> 
                 
                 <div id="science" class="collapse">
@@ -272,7 +352,7 @@
                 
             </div>
             
-            <div>
+            <div id="core" draggable="true" ondragstart="drag(event)">
                 <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#coreCS">
                     <b>Core Computer Science</b> (22 units) 
                 </button>
@@ -330,7 +410,7 @@
                 </div>
             </div>
             
-            <div>
+            <div id="adv" draggable="true" ondragstart="drag(event)">
                 <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#advCS">
                     <b>Advanced Computer Science </b> (24 units) 
                  </button>
@@ -469,7 +549,7 @@
     </div>
     <div class="col-sm-8 text-left" id="target" ondrop="drop(event)" ondragover="allowDrop(event)">
         <h1> <b> Spring 2017 Course Offerings </b></h1>
-        <p class="graytext3"> Please begin by dragging a section from the left</p>
+        <p id="text" class="graytext3"> Please begin by dragging a section from the left</p>
     </div>
     <div class="col-sm-2 sidenav" >
         <p class= "graytext2"> Drag courses here to view in schedule</p>
