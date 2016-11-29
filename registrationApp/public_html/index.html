@@ -13,14 +13,83 @@
   <script>
     
     var emptyOfferings = true;
-      
+    var emptySchedule = true;
+	
     function allowDrop(ev) {
         ev.preventDefault();
     }
 
     function drag(ev) {
         ev.dataTransfer.setData("text", ev.target.id);
+		ev.dataTransfer.setData("scheduleText",ev.scheduleTarget.id);
     }
+	
+	function dropSchedule(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("scheduleText");
+        
+
+        if(Boolean(emptyOfferings)) {
+            ev.target.removeChild(ev.target.childNodes[0]);
+            ev.target.style.border = "none";
+        }
+        
+        var header = document.createElement("div");
+		// 'schedule' text
+        var p1 = document.createElement("p");
+        var title1 = document.createTextNode("Schedule");
+        p1.appendChild(title1);
+        p1.style.position = "absolute";
+        p1.style.top = "15px";
+        p1.style.left = "25px";
+        
+		// Wrap for text size manipulation
+		var span = document.createElement('span');
+		span.style.fontSize = "30px";
+		span.appendChild(p1);
+		
+		//Placeholder Image
+		var x = document.createElement("IMG");
+		x.setAttribute("src", "placeholder.jpg");
+		x.setAttribute("width", "200");
+		x.setAttribute("height", "350");
+		x.setAttribute("alt", "placeholder");
+		document.body.appendChild(x);
+		x.style.position = "absolute";
+		x.style.top = "75px";
+		x.style.left = "5px";
+		
+		// Registration button
+        var reg = document.createElement("BUTTON");
+        reg.style.color = "black";
+        reg.style.backgroundColor = "white";
+        reg.style.border = "50px";
+		reg.style.outline = "none";
+        reg.style.padding = "10px 10px";
+        reg.style.width = "80px";
+        reg.style.height = "45px";
+        reg.style.position = "absolute";
+        reg.style.left = "130px";
+        reg.style.top = "450px";
+		
+		// Registration button text
+        var header = document.createElement("div");
+        var b1 = document.createElement("p");
+        var title1 = document.createTextNode("Register");
+        b1.appendChild(title1);
+        b1.style.position = "absolute";
+        b1.style.top = "10px";
+        b1.style.left = "10px";
+		
+		reg.appendChild(b1);
+		
+		header.appendChild(x);
+        header.appendChild(span);
+
+        ev.target.appendChild(header);
+        ev.target.appendChild(reg);
+        header.style.clear = "both";
+	}
 
     function drop(ev) {
         ev.preventDefault();
@@ -54,9 +123,17 @@
         p3.style.top = "100px";
         p3.style.left = "700px";
         
+        var p4 = document.createElement("p");
+        var title4 = document.createTextNode("Time");
+        p4.appendChild(title4);
+        p4.style.position = "absolute";
+        p4.style.top = "100px";
+        p4.style.left = "500px";
+		
         header.appendChild(p1);
         header.appendChild(p2);
         header.appendChild(p3);
+		header.appendChild(p4);
         ev.target.appendChild(header);
         
         header.style.clear = "both";
@@ -100,11 +177,20 @@
             numUnits.style.left = "680px";
             numUnits.style.top = "10px";
             numUnits.appendChild(units);
+			
+			var courseTime = document.createElement("div");
+            var time = document.createTextNode("MWF 1:00PM - 2:00PM");
+            courseTime.style.position = "absolute";
+            courseTime.style.textAlign = "left";
+            courseTime.style.left = "450px";
+            courseTime.style.top = "10px";
+            courseTime.appendChild(time);
             
             btn.appendChild(courseName);
             btn.appendChild(courseTitle);
             btn.appendChild(numUnits);
-            
+            btn.appendChild(courseTime);
+			
             ev.target.appendChild(btn);
             
             emptyOfferings = false;
@@ -551,8 +637,8 @@
         <h1> <b> Spring 2017 Course Offerings </b></h1>
         <p id="text" class="graytext3"> Please begin by dragging a section from the left</p>
     </div>
-    <div class="col-sm-2 sidenav" >
-        <p class= "graytext2"> Drag courses here to view in schedule</p>
+    <div class="col-sm-2 sidenav" id = "scheduleTarget" ondrop="dropSchedule(event)" ondragover="allowDrop(event)">
+	   <p id = "scheduleText" class= "graytext2"> Drag courses here to view in schedule </p>
     </div>
   </div>
 </div>
