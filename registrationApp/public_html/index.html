@@ -29,7 +29,7 @@
         var data = ev.dataTransfer.getData("scheduleText");
         
 
-        if(Boolean(emptyOfferings)) {
+        if(Boolean(emptySchedule)) {
             ev.target.removeChild(ev.target.childNodes[0]);
             ev.target.style.border = "none";
         }
@@ -89,6 +89,8 @@
         ev.target.appendChild(header);
         ev.target.appendChild(reg);
         header.style.clear = "both";
+		
+		
 	}
 
     function drop(ev) {
@@ -140,7 +142,7 @@
         
         if(data === "math") {
             
-            //////// Math 226 button //////////
+            //////// Math 325 button //////////
             
             var btn = document.createElement("BUTTON");
             btn.style.color = "black";
@@ -153,9 +155,10 @@
             btn.style.position = "absolute";
             btn.style.left = "25px";
             btn.style.top = "150px";
+			btn.draggable = "true";
             
             var courseName = document.createElement("div");
-            var name = document.createTextNode("MATH 226");
+            var name = document.createTextNode("MATH 325");
             courseName.style.position = "absolute";
             courseName.style.textAlign = "left";
             courseName.style.left = "20px";
@@ -163,7 +166,7 @@
             courseName.appendChild(name);
             
             var courseTitle = document.createElement("div");
-            var title = document.createTextNode("Calculus I");
+            var title = document.createTextNode("Linear Algebra");
             courseTitle.style.position = "absolute";
             courseTitle.style.textAlign = "left";
             courseTitle.style.left = "250px";
@@ -191,7 +194,167 @@
             btn.appendChild(numUnits);
             btn.appendChild(courseTime);
 			
+			// Phys 222 Button
+			
+            var phys222 = document.createElement("BUTTON");
+            phys222.style.color = "black";
+            phys222.style.backgroundColor = "antiquewhite";
+            phys222.style.border = "none";
+            phys222.style.outline = "none";
+            phys222.style.padding = "10px";
+            phys222.style.width = "800px";
+            phys222.style.height = "45px";
+            phys222.style.position = "absolute";
+            phys222.style.left = "25px";
+            phys222.style.top = "210px";
+			phys222.draggable = "true";
+            
+            var phys222courseName = document.createElement("div");
+            var phys222name = document.createTextNode("Phys 222");
+            phys222courseName.style.position = "absolute";
+            phys222courseName.style.textAlign = "left";
+            phys222courseName.style.left = "20px";
+            phys222courseName.style.top = "10px";
+            phys222courseName.appendChild(phys222name);
+            
+            var phys222courseTitle = document.createElement("div");
+            var phys222title = document.createTextNode("General Phys with Calculus I - Lab");
+            phys222courseTitle.style.position = "absolute";
+            phys222courseTitle.style.textAlign = "left";
+            phys222courseTitle.style.left = "250px";
+            phys222courseTitle.style.top = "10px";
+            phys222courseTitle.appendChild(phys222title);
+            
+            var phys222numUnits = document.createElement("div");
+            var phys222units = document.createTextNode("4");
+            phys222numUnits.style.position = "absolute";
+            phys222numUnits.style.textAlign = "left";
+            phys222numUnits.style.left = "680px";
+            phys222numUnits.style.top = "10px";
+            phys222numUnits.appendChild(phys222units);
+			
+			var phys222courseTime = document.createElement("div");
+            var phys222time = document.createTextNode("T 1:00PM - 4:00PM");
+            phys222courseTime.style.position = "absolute";
+            phys222courseTime.style.textAlign = "left";
+            phys222courseTime.style.left = "450px";
+            phys222courseTime.style.top = "10px";
+            phys222courseTime.appendChild(phys222time);
+            
+            phys222.appendChild(phys222courseName);
+            phys222.appendChild(phys222courseTitle);
+            phys222.appendChild(phys222numUnits);
+            phys222.appendChild(phys222courseTime);
+			
+			// Phys 230 Button
+			
+            var phys230 = document.createElement("BUTTON");
+            phys230.style.color = "black";
+            phys230.style.backgroundColor = "antiquewhite";
+            phys230.style.border = "none";
+            phys230.style.outline = "none";
+            phys230.style.padding = "10px";
+            phys230.style.width = "800px";
+            phys230.style.height = "45px";
+            phys230.style.position = "absolute";
+            phys230.style.left = "25px";
+            phys230.style.top = "270px";
+			phys230.draggable = "true";
+            
+            var phys230courseName = document.createElement("div");
+            var phys230name = document.createTextNode("Phys 230");
+            phys230courseName.style.position = "absolute";
+            phys230courseName.style.textAlign = "left";
+            phys230courseName.style.left = "20px";
+            phys230courseName.style.top = "10px";
+            phys230courseName.appendChild(phys230name);
+            
+            var phys230courseTitle = document.createElement("div");
+            var phys230title = document.createTextNode("Electricity and Magnetism");
+            phys230courseTitle.style.position = "absolute";
+            phys230courseTitle.style.textAlign = "left";
+            phys230courseTitle.style.left = "250px";
+            phys230courseTitle.style.top = "10px";
+            phys230courseTitle.appendChild(phys230title);
+            
+            var phys230numUnits = document.createElement("div");
+            var phys230units = document.createTextNode("4");
+            phys230numUnits.style.position = "absolute";
+            phys230numUnits.style.textAlign = "left";
+            phys230numUnits.style.left = "680px";
+            phys230numUnits.style.top = "10px";
+            phys230numUnits.appendChild(phys230units);
+			
+			var phys230courseTime = document.createElement("div");
+            var phys230time = document.createTextNode("TTH 1:30PM - 3:00PM");
+            phys230courseTime.style.position = "absolute";
+            phys230courseTime.style.textAlign = "left";
+            phys230courseTime.style.left = "450px";
+            phys230courseTime.style.top = "10px";
+            phys230courseTime.appendChild(phys230time);
+            
+            phys230.appendChild(phys230courseName);
+            phys230.appendChild(phys230courseTitle);
+            phys230.appendChild(phys230numUnits);
+            phys230.appendChild(phys230courseTime);
+			
+			// Phys 232 Button
+			
+            var phys232 = document.createElement("BUTTON");
+            phys232.style.color = "black";
+            phys232.style.backgroundColor = "antiquewhite";
+            phys232.style.border = "none";
+            phys232.style.outline = "none";
+            phys232.style.padding = "10px";
+            phys232.style.width = "800px";
+            phys232.style.height = "45px";
+            phys232.style.position = "absolute";
+            phys232.style.left = "25px";
+            phys232.style.top = "330px";
+			phys232.draggable = "true";
+            
+            var phys232courseName = document.createElement("div");
+            var phys232name = document.createTextNode("Phys 232");
+            phys232courseName.style.position = "absolute";
+            phys232courseName.style.textAlign = "left";
+            phys232courseName.style.left = "20px";
+            phys232courseName.style.top = "10px";
+            phys232courseName.appendChild(phys232name);
+            
+            var phys232courseTitle = document.createElement("div");
+            var phys232title = document.createTextNode("Electricity and Magnetism - Lab");
+            phys232courseTitle.style.position = "absolute";
+            phys232courseTitle.style.textAlign = "left";
+            phys232courseTitle.style.left = "250px";
+            phys232courseTitle.style.top = "10px";
+            phys232courseTitle.appendChild(phys232title);
+            
+            var phys232numUnits = document.createElement("div");
+            var phys232units = document.createTextNode("4");
+            phys232numUnits.style.position = "absolute";
+            phys232numUnits.style.textAlign = "left";
+            phys232numUnits.style.left = "680px";
+            phys232numUnits.style.top = "10px";
+            phys232numUnits.appendChild(phys232units);
+			
+			var phys232courseTime = document.createElement("div");
+            var phys232time = document.createTextNode("F 2:00PM - 5:00PM");
+            phys232courseTime.style.position = "absolute";
+            phys232courseTime.style.textAlign = "left";
+            phys232courseTime.style.left = "450px";
+            phys232courseTime.style.top = "10px";
+            phys232courseTime.appendChild(phys232time);
+            
+            phys232.appendChild(phys232courseName);
+            phys232.appendChild(phys232courseTitle);
+            phys232.appendChild(phys232numUnits);
+            phys232.appendChild(phys232courseTime);
+			
+			ev.target.appendChild(phys232);
+			ev.target.appendChild(phys230);
+			ev.target.appendChild(phys222);
             ev.target.appendChild(btn);
+			
             
             emptyOfferings = false;
         }
