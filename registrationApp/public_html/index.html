@@ -64,28 +64,53 @@
         reg.style.color = "black";
         reg.style.backgroundColor = "white";
         reg.style.border = "50px";
-		reg.style.outline = "none";
+	reg.style.outline = "solid green";
         reg.style.padding = "10px 10px";
         reg.style.width = "80px";
         reg.style.height = "45px";
         reg.style.position = "absolute";
-        reg.style.left = "130px";
+        reg.style.left = "115px";
         reg.style.top = "450px";
-		
-		// Registration button text
+        
+        // Registration button text
         var header = document.createElement("div");
         var b1 = document.createElement("p");
         var title1 = document.createTextNode("Register");
         b1.appendChild(title1);
         b1.style.position = "absolute";
         b1.style.top = "10px";
-        b1.style.left = "10px";
+        b1.style.left = "9px";
 		
-		reg.appendChild(b1);
+	reg.appendChild(b1);
+        
+        // Clear button
+        var clr = document.createElement("BUTTON");
+        clr.style.color = "black";
+        clr.style.backgroundColor = "white";
+        clr.style.border = "50px";
+	clr.style.outline = "solid red";
+        clr.style.padding = "10px 10px";
+        clr.style.width = "80px";
+        clr.style.height = "45px";
+        clr.style.position = "absolute";
+        clr.style.left = "15px";
+        clr.style.top = "450px";
+        
+        // Clear button text
+        var header = document.createElement("div");
+        var b2 = document.createElement("p");
+        var title2 = document.createTextNode("Clear");
+        b2.appendChild(title2);
+        b2.style.position = "absolute";
+        b2.style.top = "10px";
+        b2.style.left = "18px";
 		
-		header.appendChild(x);
+	clr.appendChild(b2);
+        
+        header.appendChild(x);
         header.appendChild(span);
-
+        header.appendChild(clr);
+		
         ev.target.appendChild(header);
         ev.target.appendChild(reg);
         header.style.clear = "both";
@@ -144,26 +169,26 @@
             
             //////// Math 325 button //////////
             
-            var btn = document.createElement("BUTTON");
-            btn.style.color = "black";
-            btn.style.backgroundColor = "antiquewhite";
-            btn.style.border = "none";
-            btn.style.outline = "none";
-            btn.style.padding = "10px";
-            btn.style.width = "800px";
-            btn.style.height = "45px";
-            btn.style.position = "absolute";
-            btn.style.left = "25px";
-            btn.style.top = "150px";
-			btn.draggable = "true";
+            var math325 = document.createElement("BUTTON");
+            math325.style.color = "black";
+            math325.style.backgroundColor = "antiquewhite";
+            math325.style.border = "none";
+            math325.style.outline = "none";
+            math325.style.padding = "10px";
+            math325.style.width = "800px";
+            math325.style.height = "45px";
+            math325.style.position = "absolute";
+            math325.style.left = "25px";
+            math325.style.top = "150px";
+            math325.draggable = "true";
             
-            var courseName = document.createElement("div");
+            var math325Name = document.createElement("div");
             var name = document.createTextNode("MATH 325");
-            courseName.style.position = "absolute";
-            courseName.style.textAlign = "left";
-            courseName.style.left = "20px";
-            courseName.style.top = "10px";
-            courseName.appendChild(name);
+            math325Name.style.position = "absolute";
+            math325Name.style.textAlign = "left";
+            math325Name.style.left = "20px";
+            math325Name.style.top = "10px";
+            math325Name.appendChild(name);
             
             var courseTitle = document.createElement("div");
             var title = document.createTextNode("Linear Algebra");
@@ -181,7 +206,7 @@
             numUnits.style.top = "10px";
             numUnits.appendChild(units);
 			
-			var courseTime = document.createElement("div");
+            var courseTime = document.createElement("div");
             var time = document.createTextNode("MWF 1:00PM - 2:00PM");
             courseTime.style.position = "absolute";
             courseTime.style.textAlign = "left";
@@ -189,13 +214,12 @@
             courseTime.style.top = "10px";
             courseTime.appendChild(time);
             
-            btn.appendChild(courseName);
-            btn.appendChild(courseTitle);
-            btn.appendChild(numUnits);
-            btn.appendChild(courseTime);
+            math325.appendChild(math325Name);
+            math325.appendChild(courseTitle);
+            math325.appendChild(numUnits);
+            math325.appendChild(courseTime);
 			
-			// Phys 222 Button
-			
+            // Phys 222 Button		
             var phys222 = document.createElement("BUTTON");
             phys222.style.color = "black";
             phys222.style.backgroundColor = "antiquewhite";
@@ -349,11 +373,12 @@
             phys232.appendChild(phys232courseTitle);
             phys232.appendChild(phys232numUnits);
             phys232.appendChild(phys232courseTime);
-			
-			ev.target.appendChild(phys232);
-			ev.target.appendChild(phys230);
-			ev.target.appendChild(phys222);
-            ev.target.appendChild(btn);
+		
+            ev.target.appendChild(math325);
+            ev.target.appendChild(phys232);
+            ev.target.appendChild(phys230);
+            ev.target.appendChild(phys222);
+            
 			
             
             emptyOfferings = false;
