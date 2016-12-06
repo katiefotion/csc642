@@ -37,8 +37,6 @@
                 var header = document.createElement("div");
                 // 'schedule' text
                 var p1 = document.createElement("p");
-                var title1 = document.createTextNode("Schedule");
-                p1.appendChild(title1);
                 p1.style.position = "absolute";
                 p1.style.top = "15px";
                 p1.style.left = "25px";
@@ -51,13 +49,13 @@
                 //Placeholder Image
                 var x = document.createElement("IMG");
                 x.setAttribute("src", "placeholder.jpg");
-                x.setAttribute("width", "200");
-                x.setAttribute("height", "350");
+                x.setAttribute("width", "290");
+                x.setAttribute("height", "437.5");
                 x.setAttribute("alt", "placeholder");
                 document.body.appendChild(x);
                 x.style.position = "absolute";
                 x.style.top = "75px";
-                x.style.left = "5px";
+                x.style.left = "15px";
 
                 // Registration button
                 var reg = document.createElement("BUTTON");
@@ -69,8 +67,8 @@
                 reg.style.width = "80px";
                 reg.style.height = "45px";
                 reg.style.position = "absolute";
-                reg.style.left = "115px";
-                reg.style.top = "450px";
+                reg.style.left = "185px";
+                reg.style.top = "540px";
 
                 // Registration button text
                 var header = document.createElement("div");
@@ -93,8 +91,8 @@
                 clr.style.width = "80px";
                 clr.style.height = "45px";
                 clr.style.position = "absolute";
-                clr.style.left = "15px";
-                clr.style.top = "450px";
+                clr.style.left = "60px";
+                clr.style.top = "540px";
 
                 // Clear button text
                 var header = document.createElement("div");
@@ -123,7 +121,9 @@
                 var data = ev.dataTransfer.getData("text");
 
                 if (Boolean(emptyOfferings)) {
-                    ev.target.removeChild(ev.target.childNodes[0]);
+                    ev.target.removeChild(ev.target.childNodes[1]);
+                    
+                    ev.target.removeChild(ev.target.childNodes[2]);
                     ev.target.style.border = "none";
                 }
 
@@ -409,6 +409,10 @@
                 color: white;
                 padding: 15px;
             }
+            
+            h3 {
+                margin-top: 0px;
+            }
 
             /* On small screens, set height to 'auto' for sidenav and grid */
             @media screen and (max-width: 767px) {
@@ -478,7 +482,7 @@
                 color:gray;
                 border: dashed;
                 border-radius: 10px;
-                height: 500px;
+                height: 540px;
                 text-align: center;
                 padding-top: 200px;
                 padding-right: 15px;
@@ -486,15 +490,16 @@
             }
 
             .graytext3 {
-                font-size: 125%;
+                font-size: 150%;
                 color:gray;
                 border: dashed;
                 border-radius: 10px;
-                height: 450px;
+                height: 520px;
                 text-align: center;
-                padding-top: 200px;
+                padding-top: 150px;
                 padding-right: 15px;
                 padding-left: 15px;
+                margin-top: 20px;
             }
 
             .checkmark {
@@ -529,16 +534,11 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand mb-0">Requirements</a>
-                </div>
+                    <h3 style="color:gray;margin-top:12px"> Welcome to the SFSU Online Registration Portal </h3>
+                    </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a class="navbar-brand mb-0">Schedule</a>
+                        <li><a class="navbar-brand mb-0">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -550,6 +550,9 @@
                 <div class="col-sm-2 sidenav">
 
                     <!-- Computer Science requirements section -->
+                    <center>
+                    <h3> Degree Requirements </h3>
+                    </center>
                     <button type="button" class="headerbutton" data-toggle="collapse" data-target="#csreq"> <b>Computer Science</b> </button>
                     <div id="csreq" class="collapse">
 
@@ -827,12 +830,20 @@
                     </div>
 
                 </div>
-                <div class="col-sm-8 text-left" id="target" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <div class="col-sm-7 text-left" id="target" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <h1> <b> Spring 2017 Course Offerings </b></h1>
-                    <p id="text" class="graytext3"> Please begin by dragging a section from the left</p>
+                    <div id="text" class="graytext3"> 
+                        <p>1. Click on left categories to browse your completed and uncompleted degree requirements</p>
+                        <p>2. Drag unfulfilled requirements to this section to view relevant Spring 2017 course offerings</p>
+                        <p>3. Drag desired courses to schedule on right to view a week at a glance </p>
+                        <p>4. Click "Register" when schedule has been perfected </p>
+                    </div>
                 </div>
-                <div class="col-sm-2 sidenav" id = "scheduleTarget" ondrop="dropSchedule(event)" ondragover="allowDrop(event)">
-                    <p id = "scheduleText" class= "graytext2"> Drag courses here to view in schedule </p>
+                <div class="col-sm-3 sidenav" style="height:620px" id = "scheduleTarget" ondrop="dropSchedule(event)" ondragover="allowDrop(event)">
+                    <center>
+                    <h3 style="margin-top:10px;margin-bottom:20px"> Proposed Schedule</h3>
+                    </center>
+                    <p id = "scheduleText" class= "graytext2"> Drag courses here to simultaneously view in schedule </p>
                 </div>
             </div>
         </div>
