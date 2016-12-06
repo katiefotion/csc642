@@ -1,841 +1,847 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>CSC 642 Registration Site Fall 2016</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
-  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-  <script>
-    
-    var emptyOfferings = true;
-    var emptySchedule = true;
-	
-    function allowDrop(ev) {
-        ev.preventDefault();
-    }
+    <head>
+        <title>CSC 642 Registration Site Fall 2016</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap.css" type="text/css"/>
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    function drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.id);
-		ev.dataTransfer.setData("scheduleText",ev.scheduleTarget.id);
-    }
-	
-	function dropSchedule(ev) {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("scheduleText");
-        
+        <script>
 
-        if(Boolean(emptySchedule)) {
-            ev.target.removeChild(ev.target.childNodes[0]);
-            ev.target.style.border = "none";
-        }
-        
-        var header = document.createElement("div");
-		// 'schedule' text
-        var p1 = document.createElement("p");
-        var title1 = document.createTextNode("Schedule");
-        p1.appendChild(title1);
-        p1.style.position = "absolute";
-        p1.style.top = "15px";
-        p1.style.left = "25px";
-        
-		// Wrap for text size manipulation
-		var span = document.createElement('span');
-		span.style.fontSize = "30px";
-		span.appendChild(p1);
-		
-		//Placeholder Image
-		var x = document.createElement("IMG");
-		x.setAttribute("src", "placeholder.jpg");
-		x.setAttribute("width", "200");
-		x.setAttribute("height", "350");
-		x.setAttribute("alt", "placeholder");
-		document.body.appendChild(x);
-		x.style.position = "absolute";
-		x.style.top = "75px";
-		x.style.left = "5px";
-		
-		// Registration button
-        var reg = document.createElement("BUTTON");
-        reg.style.color = "black";
-        reg.style.backgroundColor = "white";
-        reg.style.border = "50px";
-	reg.style.outline = "solid green";
-        reg.style.padding = "10px 10px";
-        reg.style.width = "80px";
-        reg.style.height = "45px";
-        reg.style.position = "absolute";
-        reg.style.left = "115px";
-        reg.style.top = "450px";
-        
-        // Registration button text
-        var header = document.createElement("div");
-        var b1 = document.createElement("p");
-        var title1 = document.createTextNode("Register");
-        b1.appendChild(title1);
-        b1.style.position = "absolute";
-        b1.style.top = "10px";
-        b1.style.left = "9px";
-		
-	reg.appendChild(b1);
-        
-        // Clear button
-        var clr = document.createElement("BUTTON");
-        clr.style.color = "black";
-        clr.style.backgroundColor = "white";
-        clr.style.border = "50px";
-	clr.style.outline = "solid red";
-        clr.style.padding = "10px 10px";
-        clr.style.width = "80px";
-        clr.style.height = "45px";
-        clr.style.position = "absolute";
-        clr.style.left = "15px";
-        clr.style.top = "450px";
-        
-        // Clear button text
-        var header = document.createElement("div");
-        var b2 = document.createElement("p");
-        var title2 = document.createTextNode("Clear");
-        b2.appendChild(title2);
-        b2.style.position = "absolute";
-        b2.style.top = "10px";
-        b2.style.left = "18px";
-		
-	clr.appendChild(b2);
-        
-        header.appendChild(x);
-        header.appendChild(span);
-        header.appendChild(clr);
-		
-        ev.target.appendChild(header);
-        ev.target.appendChild(reg);
-        header.style.clear = "both";
-		
-		
-	}
+            var emptyOfferings = true;
+            var emptySchedule = true;
 
-    function drop(ev) {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        
-        if(Boolean(emptyOfferings)) {
-            ev.target.removeChild(ev.target.childNodes[0]);
-            ev.target.style.border = "none";
-        }
-        
-        var header = document.createElement("div");
-        
-        var p1 = document.createElement("p");
-        var title1 = document.createTextNode("Course");
-        p1.appendChild(title1);
-        p1.style.position = "absolute";
-        p1.style.top = "100px";
-        p1.style.left = "45px";
-        
-        var p2 = document.createElement("p");
-        var title2 = document.createTextNode("Title");
-        p2.appendChild(title2);
-        p2.style.position = "absolute";
-        p2.style.top = "100px";
-        p2.style.left = "275px";
-        
-        var p3 = document.createElement("p");
-        var title3 = document.createTextNode("Units");
-        p3.appendChild(title3);
-        p3.style.position = "absolute";
-        p3.style.top = "100px";
-        p3.style.left = "700px";
-        
-        var p4 = document.createElement("p");
-        var title4 = document.createTextNode("Time");
-        p4.appendChild(title4);
-        p4.style.position = "absolute";
-        p4.style.top = "100px";
-        p4.style.left = "500px";
-		
-        header.appendChild(p1);
-        header.appendChild(p2);
-        header.appendChild(p3);
-		header.appendChild(p4);
-        ev.target.appendChild(header);
-        
-        header.style.clear = "both";
-        
-        if(data === "math") {
-            
-            //////// Math 325 button //////////
-            
-            var math325 = document.createElement("BUTTON");
-            math325.style.color = "black";
-            math325.style.backgroundColor = "antiquewhite";
-            math325.style.border = "none";
-            math325.style.outline = "none";
-            math325.style.padding = "10px";
-            math325.style.width = "800px";
-            math325.style.height = "45px";
-            math325.style.position = "absolute";
-            math325.style.left = "25px";
-            math325.style.top = "150px";
-            math325.draggable = "true";
-            
-            var math325Name = document.createElement("div");
-            var name = document.createTextNode("MATH 325");
-            math325Name.style.position = "absolute";
-            math325Name.style.textAlign = "left";
-            math325Name.style.left = "20px";
-            math325Name.style.top = "10px";
-            math325Name.appendChild(name);
-            
-            var courseTitle = document.createElement("div");
-            var title = document.createTextNode("Linear Algebra");
-            courseTitle.style.position = "absolute";
-            courseTitle.style.textAlign = "left";
-            courseTitle.style.left = "250px";
-            courseTitle.style.top = "10px";
-            courseTitle.appendChild(title);
-            
-            var numUnits = document.createElement("div");
-            var units = document.createTextNode("4");
-            numUnits.style.position = "absolute";
-            numUnits.style.textAlign = "left";
-            numUnits.style.left = "680px";
-            numUnits.style.top = "10px";
-            numUnits.appendChild(units);
-			
-            var courseTime = document.createElement("div");
-            var time = document.createTextNode("MWF 1:00PM - 2:00PM");
-            courseTime.style.position = "absolute";
-            courseTime.style.textAlign = "left";
-            courseTime.style.left = "450px";
-            courseTime.style.top = "10px";
-            courseTime.appendChild(time);
-            
-            math325.appendChild(math325Name);
-            math325.appendChild(courseTitle);
-            math325.appendChild(numUnits);
-            math325.appendChild(courseTime);
-			
-            // Phys 222 Button		
-            var phys222 = document.createElement("BUTTON");
-            phys222.style.color = "black";
-            phys222.style.backgroundColor = "antiquewhite";
-            phys222.style.border = "none";
-            phys222.style.outline = "none";
-            phys222.style.padding = "10px";
-            phys222.style.width = "800px";
-            phys222.style.height = "45px";
-            phys222.style.position = "absolute";
-            phys222.style.left = "25px";
-            phys222.style.top = "210px";
-			phys222.draggable = "true";
-            
-            var phys222courseName = document.createElement("div");
-            var phys222name = document.createTextNode("Phys 222");
-            phys222courseName.style.position = "absolute";
-            phys222courseName.style.textAlign = "left";
-            phys222courseName.style.left = "20px";
-            phys222courseName.style.top = "10px";
-            phys222courseName.appendChild(phys222name);
-            
-            var phys222courseTitle = document.createElement("div");
-            var phys222title = document.createTextNode("General Phys with Calculus I - Lab");
-            phys222courseTitle.style.position = "absolute";
-            phys222courseTitle.style.textAlign = "left";
-            phys222courseTitle.style.left = "250px";
-            phys222courseTitle.style.top = "10px";
-            phys222courseTitle.appendChild(phys222title);
-            
-            var phys222numUnits = document.createElement("div");
-            var phys222units = document.createTextNode("4");
-            phys222numUnits.style.position = "absolute";
-            phys222numUnits.style.textAlign = "left";
-            phys222numUnits.style.left = "680px";
-            phys222numUnits.style.top = "10px";
-            phys222numUnits.appendChild(phys222units);
-			
-			var phys222courseTime = document.createElement("div");
-            var phys222time = document.createTextNode("T 1:00PM - 4:00PM");
-            phys222courseTime.style.position = "absolute";
-            phys222courseTime.style.textAlign = "left";
-            phys222courseTime.style.left = "450px";
-            phys222courseTime.style.top = "10px";
-            phys222courseTime.appendChild(phys222time);
-            
-            phys222.appendChild(phys222courseName);
-            phys222.appendChild(phys222courseTitle);
-            phys222.appendChild(phys222numUnits);
-            phys222.appendChild(phys222courseTime);
-			
-			// Phys 230 Button
-			
-            var phys230 = document.createElement("BUTTON");
-            phys230.style.color = "black";
-            phys230.style.backgroundColor = "antiquewhite";
-            phys230.style.border = "none";
-            phys230.style.outline = "none";
-            phys230.style.padding = "10px";
-            phys230.style.width = "800px";
-            phys230.style.height = "45px";
-            phys230.style.position = "absolute";
-            phys230.style.left = "25px";
-            phys230.style.top = "270px";
-			phys230.draggable = "true";
-            
-            var phys230courseName = document.createElement("div");
-            var phys230name = document.createTextNode("Phys 230");
-            phys230courseName.style.position = "absolute";
-            phys230courseName.style.textAlign = "left";
-            phys230courseName.style.left = "20px";
-            phys230courseName.style.top = "10px";
-            phys230courseName.appendChild(phys230name);
-            
-            var phys230courseTitle = document.createElement("div");
-            var phys230title = document.createTextNode("Electricity and Magnetism");
-            phys230courseTitle.style.position = "absolute";
-            phys230courseTitle.style.textAlign = "left";
-            phys230courseTitle.style.left = "250px";
-            phys230courseTitle.style.top = "10px";
-            phys230courseTitle.appendChild(phys230title);
-            
-            var phys230numUnits = document.createElement("div");
-            var phys230units = document.createTextNode("4");
-            phys230numUnits.style.position = "absolute";
-            phys230numUnits.style.textAlign = "left";
-            phys230numUnits.style.left = "680px";
-            phys230numUnits.style.top = "10px";
-            phys230numUnits.appendChild(phys230units);
-			
-			var phys230courseTime = document.createElement("div");
-            var phys230time = document.createTextNode("TTH 1:30PM - 3:00PM");
-            phys230courseTime.style.position = "absolute";
-            phys230courseTime.style.textAlign = "left";
-            phys230courseTime.style.left = "450px";
-            phys230courseTime.style.top = "10px";
-            phys230courseTime.appendChild(phys230time);
-            
-            phys230.appendChild(phys230courseName);
-            phys230.appendChild(phys230courseTitle);
-            phys230.appendChild(phys230numUnits);
-            phys230.appendChild(phys230courseTime);
-			
-			// Phys 232 Button
-			
-            var phys232 = document.createElement("BUTTON");
-            phys232.style.color = "black";
-            phys232.style.backgroundColor = "antiquewhite";
-            phys232.style.border = "none";
-            phys232.style.outline = "none";
-            phys232.style.padding = "10px";
-            phys232.style.width = "800px";
-            phys232.style.height = "45px";
-            phys232.style.position = "absolute";
-            phys232.style.left = "25px";
-            phys232.style.top = "330px";
-			phys232.draggable = "true";
-            
-            var phys232courseName = document.createElement("div");
-            var phys232name = document.createTextNode("Phys 232");
-            phys232courseName.style.position = "absolute";
-            phys232courseName.style.textAlign = "left";
-            phys232courseName.style.left = "20px";
-            phys232courseName.style.top = "10px";
-            phys232courseName.appendChild(phys232name);
-            
-            var phys232courseTitle = document.createElement("div");
-            var phys232title = document.createTextNode("Electricity and Magnetism - Lab");
-            phys232courseTitle.style.position = "absolute";
-            phys232courseTitle.style.textAlign = "left";
-            phys232courseTitle.style.left = "250px";
-            phys232courseTitle.style.top = "10px";
-            phys232courseTitle.appendChild(phys232title);
-            
-            var phys232numUnits = document.createElement("div");
-            var phys232units = document.createTextNode("4");
-            phys232numUnits.style.position = "absolute";
-            phys232numUnits.style.textAlign = "left";
-            phys232numUnits.style.left = "680px";
-            phys232numUnits.style.top = "10px";
-            phys232numUnits.appendChild(phys232units);
-			
-			var phys232courseTime = document.createElement("div");
-            var phys232time = document.createTextNode("F 2:00PM - 5:00PM");
-            phys232courseTime.style.position = "absolute";
-            phys232courseTime.style.textAlign = "left";
-            phys232courseTime.style.left = "450px";
-            phys232courseTime.style.top = "10px";
-            phys232courseTime.appendChild(phys232time);
-            
-            phys232.appendChild(phys232courseName);
-            phys232.appendChild(phys232courseTitle);
-            phys232.appendChild(phys232numUnits);
-            phys232.appendChild(phys232courseTime);
-		
-            ev.target.appendChild(math325);
-            ev.target.appendChild(phys232);
-            ev.target.appendChild(phys230);
-            ev.target.appendChild(phys222);
-            
-			
-            
-            emptyOfferings = false;
-        }
-    }
-  </script>
-  
-  <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: auto;
-    }
-    
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;}
-    }
-    
-    /* This creates a header button using text */
-    .headerbutton {
-	background: #475233;
-        border: solid gray;
-	margin:5px;
-	padding:5px;
-	font-size:150%;
-	color: white;
-        text-align: left;
-        outline: none;
-    }
-    
-    .subheaderbutton {
-        border-left: none;
-        border-right: none;
-        border-top: none;
-        border-bottom: solid;
-        background: none;
-        font-size: 100%;
-        text-indent: 0;
-        padding: 2px;
-        margin: 5px;
-        text-align: left;
-        width: 150px;
-        float: left;
-        overflow: hidden;
-        outline:none;
-    }
-	
-    .courses {
-        border: none;
-        background: none;
-        font-size: 100%;
-        text-indent: 20px;
-        padding: 2px;
-        margin: 5px;
-        text-align: left;
-        width: 150px;
-        float: left;
-        overflow: hidden;
-        outline:none;
-    }
-	
-    /* Grayed out text*/
-    .graytext {
-        font-size: 125%;
-        color:gray;
-    }
-        
-    /* Grayed out text with dashed outline*/
-    .graytext2 {
-        font-size: 125%;
-        color:gray;
-        border: dashed;
-        border-radius: 10px;
-        height: 500px;
-        text-align: center;
-        padding-top: 200px;
-        padding-right: 15px;
-        padding-left: 15px;
-    }
-    
-    .graytext3 {
-        font-size: 125%;
-        color:gray;
-        border: dashed;
-        border-radius: 10px;
-        height: 450px;
-        text-align: center;
-        padding-top: 200px;
-        padding-right: 15px;
-        padding-left: 15px;
-    }
+            function allowDrop(ev) {
+                ev.preventDefault();
+            }
 
-    .checkmark {
-        color: green;
-        text-align:right; 
-        padding-top: 8px;
-        padding-right: 5px;
-        float: right;
-        overflow: hidden;
-    }
-    
-    .xmark {
-        color: red;
-        text-align:right; 
-        padding-top: 10px;
-        padding-right: 5px;
-        float: right;
-        overflow: hidden;
-    }
-    
-    .subheader {
-        margin-left: 5px;
-        margin-right: 5px;
-        background: darkgrey;
-    }
-	
-  </style>
-</head>
+            function drag(ev) {
+                ev.dataTransfer.setData("text", ev.target.id);
+                ev.dataTransfer.setData("scheduleText", ev.scheduleTarget.id);
+            }
 
-<body>
+            function dropSchedule(ev) {
+                ev.preventDefault();
+                var data = ev.dataTransfer.getData("scheduleText");
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand mb-0">Requirements</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a class="navbar-brand mb-0">Schedule</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
 
-<div class="container-fluid">
-  <div class="row content">
-    <div class="col-sm-2 sidenav">
+                if (Boolean(emptySchedule)) {
+                    ev.target.removeChild(ev.target.childNodes[0]);
+                    ev.target.style.border = "none";
+                }
 
-        <!-- Computer Science requirements section -->
-        <button type="button" class="headerbutton" data-toggle="collapse" data-target="#csreq"> <b>Computer Science</b> </button>
-        <div id="csreq" class="collapse">
-            
-            <div id="math" draggable="true" ondragstart="drag(event)">
-                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#mathPhys"><b>Mathematics and Physics</b> (22 units)</button>
-                <p class = "xmark"> &#x2717; </p>
-                <div style="clear: both"> </div>
+                var header = document.createElement("div");
+                // 'schedule' text
+                var p1 = document.createElement("p");
+                var title1 = document.createTextNode("Schedule");
+                p1.appendChild(title1);
+                p1.style.position = "absolute";
+                p1.style.top = "15px";
+                p1.style.left = "25px";
 
-                <div id="mathPhys" class="collapse">
-                    <div> 
-                        <button type="button" class="courses">MATH 226 (4)</button>
-                        <p class = "checkmark"> &#x2714; </p>
+                // Wrap for text size manipulation
+                var span = document.createElement('span');
+                span.style.fontSize = "30px";
+                span.appendChild(p1);
+
+                //Placeholder Image
+                var x = document.createElement("IMG");
+                x.setAttribute("src", "placeholder.jpg");
+                x.setAttribute("width", "200");
+                x.setAttribute("height", "350");
+                x.setAttribute("alt", "placeholder");
+                document.body.appendChild(x);
+                x.style.position = "absolute";
+                x.style.top = "75px";
+                x.style.left = "5px";
+
+                // Registration button
+                var reg = document.createElement("BUTTON");
+                reg.style.color = "black";
+                reg.style.backgroundColor = "white";
+                reg.style.border = "50px";
+                reg.style.outline = "solid green";
+                reg.style.padding = "10px 10px";
+                reg.style.width = "80px";
+                reg.style.height = "45px";
+                reg.style.position = "absolute";
+                reg.style.left = "115px";
+                reg.style.top = "450px";
+
+                // Registration button text
+                var header = document.createElement("div");
+                var b1 = document.createElement("p");
+                var title1 = document.createTextNode("Register");
+                b1.appendChild(title1);
+                b1.style.position = "absolute";
+                b1.style.top = "10px";
+                b1.style.left = "9px";
+
+                reg.appendChild(b1);
+
+                // Clear button
+                var clr = document.createElement("BUTTON");
+                clr.style.color = "black";
+                clr.style.backgroundColor = "white";
+                clr.style.border = "50px";
+                clr.style.outline = "solid red";
+                clr.style.padding = "10px 10px";
+                clr.style.width = "80px";
+                clr.style.height = "45px";
+                clr.style.position = "absolute";
+                clr.style.left = "15px";
+                clr.style.top = "450px";
+
+                // Clear button text
+                var header = document.createElement("div");
+                var b2 = document.createElement("p");
+                var title2 = document.createTextNode("Clear");
+                b2.appendChild(title2);
+                b2.style.position = "absolute";
+                b2.style.top = "10px";
+                b2.style.left = "18px";
+
+                clr.appendChild(b2);
+
+                header.appendChild(x);
+                header.appendChild(span);
+                header.appendChild(clr);
+
+                ev.target.appendChild(header);
+                ev.target.appendChild(reg);
+                header.style.clear = "both";
+
+
+            }
+
+            function drop(ev) {
+                ev.preventDefault();
+                var data = ev.dataTransfer.getData("text");
+
+                if (Boolean(emptyOfferings)) {
+                    ev.target.removeChild(ev.target.childNodes[0]);
+                    ev.target.style.border = "none";
+                }
+
+                var header = document.createElement("div");
+
+                var p1 = document.createElement("p");
+                var title1 = document.createTextNode("Course");
+                p1.appendChild(title1);
+                p1.style.position = "absolute";
+                p1.style.top = "100px";
+                p1.style.left = "45px";
+
+                var p2 = document.createElement("p");
+                var title2 = document.createTextNode("Title");
+                p2.appendChild(title2);
+                p2.style.position = "absolute";
+                p2.style.top = "100px";
+                p2.style.left = "275px";
+
+                var p3 = document.createElement("p");
+                var title3 = document.createTextNode("Units");
+                p3.appendChild(title3);
+                p3.style.position = "absolute";
+                p3.style.top = "100px";
+                p3.style.left = "700px";
+
+                var p4 = document.createElement("p");
+                var title4 = document.createTextNode("Time");
+                p4.appendChild(title4);
+                p4.style.position = "absolute";
+                p4.style.top = "100px";
+                p4.style.left = "500px";
+
+                header.appendChild(p1);
+                header.appendChild(p2);
+                header.appendChild(p3);
+                header.appendChild(p4);
+                ev.target.appendChild(header);
+
+                header.style.clear = "both";
+
+                if (data === "math") {
+
+                    //////// Math 325 button //////////
+
+                    var math325 = document.createElement("BUTTON");
+                    math325.style.color = "black";
+                    math325.style.backgroundColor = "antiquewhite";
+                    math325.style.border = "none";
+                    math325.style.outline = "none";
+                    math325.style.padding = "10px";
+                    math325.style.width = "800px";
+                    math325.style.height = "45px";
+                    math325.style.position = "absolute";
+                    math325.style.left = "25px";
+                    math325.style.top = "150px";
+                    math325.draggable = "true";
+
+                    var math325Name = document.createElement("div");
+                    var name = document.createTextNode("MATH 325");
+                    math325Name.style.position = "absolute";
+                    math325Name.style.textAlign = "left";
+                    math325Name.style.left = "20px";
+                    math325Name.style.top = "10px";
+                    math325Name.appendChild(name);
+
+                    var courseTitle = document.createElement("div");
+                    var title = document.createTextNode("Linear Algebra");
+                    courseTitle.style.position = "absolute";
+                    courseTitle.style.textAlign = "left";
+                    courseTitle.style.left = "250px";
+                    courseTitle.style.top = "10px";
+                    courseTitle.appendChild(title);
+
+                    var numUnits = document.createElement("div");
+                    var units = document.createTextNode("4");
+                    numUnits.style.position = "absolute";
+                    numUnits.style.textAlign = "left";
+                    numUnits.style.left = "680px";
+                    numUnits.style.top = "10px";
+                    numUnits.appendChild(units);
+
+                    var courseTime = document.createElement("div");
+                    var time = document.createTextNode("MWF 1:00PM - 2:00PM");
+                    courseTime.style.position = "absolute";
+                    courseTime.style.textAlign = "left";
+                    courseTime.style.left = "450px";
+                    courseTime.style.top = "10px";
+                    courseTime.appendChild(time);
+
+                    math325.appendChild(math325Name);
+                    math325.appendChild(courseTitle);
+                    math325.appendChild(numUnits);
+                    math325.appendChild(courseTime);
+
+                    // Phys 222 Button		
+                    var phys222 = document.createElement("BUTTON");
+                    phys222.style.color = "black";
+                    phys222.style.backgroundColor = "antiquewhite";
+                    phys222.style.border = "none";
+                    phys222.style.outline = "none";
+                    phys222.style.padding = "10px";
+                    phys222.style.width = "800px";
+                    phys222.style.height = "45px";
+                    phys222.style.position = "absolute";
+                    phys222.style.left = "25px";
+                    phys222.style.top = "210px";
+                    phys222.draggable = "true";
+
+                    var phys222courseName = document.createElement("div");
+                    var phys222name = document.createTextNode("Phys 222");
+                    phys222courseName.style.position = "absolute";
+                    phys222courseName.style.textAlign = "left";
+                    phys222courseName.style.left = "20px";
+                    phys222courseName.style.top = "10px";
+                    phys222courseName.appendChild(phys222name);
+
+                    var phys222courseTitle = document.createElement("div");
+                    var phys222title = document.createTextNode("General Phys with Calculus I - Lab");
+                    phys222courseTitle.style.position = "absolute";
+                    phys222courseTitle.style.textAlign = "left";
+                    phys222courseTitle.style.left = "250px";
+                    phys222courseTitle.style.top = "10px";
+                    phys222courseTitle.appendChild(phys222title);
+
+                    var phys222numUnits = document.createElement("div");
+                    var phys222units = document.createTextNode("4");
+                    phys222numUnits.style.position = "absolute";
+                    phys222numUnits.style.textAlign = "left";
+                    phys222numUnits.style.left = "680px";
+                    phys222numUnits.style.top = "10px";
+                    phys222numUnits.appendChild(phys222units);
+
+                    var phys222courseTime = document.createElement("div");
+                    var phys222time = document.createTextNode("T 1:00PM - 4:00PM");
+                    phys222courseTime.style.position = "absolute";
+                    phys222courseTime.style.textAlign = "left";
+                    phys222courseTime.style.left = "450px";
+                    phys222courseTime.style.top = "10px";
+                    phys222courseTime.appendChild(phys222time);
+
+                    phys222.appendChild(phys222courseName);
+                    phys222.appendChild(phys222courseTitle);
+                    phys222.appendChild(phys222numUnits);
+                    phys222.appendChild(phys222courseTime);
+
+                    // Phys 230 Button
+
+                    var phys230 = document.createElement("BUTTON");
+                    phys230.style.color = "black";
+                    phys230.style.backgroundColor = "antiquewhite";
+                    phys230.style.border = "none";
+                    phys230.style.outline = "none";
+                    phys230.style.padding = "10px";
+                    phys230.style.width = "800px";
+                    phys230.style.height = "45px";
+                    phys230.style.position = "absolute";
+                    phys230.style.left = "25px";
+                    phys230.style.top = "270px";
+                    phys230.draggable = "true";
+
+                    var phys230courseName = document.createElement("div");
+                    var phys230name = document.createTextNode("Phys 230");
+                    phys230courseName.style.position = "absolute";
+                    phys230courseName.style.textAlign = "left";
+                    phys230courseName.style.left = "20px";
+                    phys230courseName.style.top = "10px";
+                    phys230courseName.appendChild(phys230name);
+
+                    var phys230courseTitle = document.createElement("div");
+                    var phys230title = document.createTextNode("Electricity and Magnetism");
+                    phys230courseTitle.style.position = "absolute";
+                    phys230courseTitle.style.textAlign = "left";
+                    phys230courseTitle.style.left = "250px";
+                    phys230courseTitle.style.top = "10px";
+                    phys230courseTitle.appendChild(phys230title);
+
+                    var phys230numUnits = document.createElement("div");
+                    var phys230units = document.createTextNode("4");
+                    phys230numUnits.style.position = "absolute";
+                    phys230numUnits.style.textAlign = "left";
+                    phys230numUnits.style.left = "680px";
+                    phys230numUnits.style.top = "10px";
+                    phys230numUnits.appendChild(phys230units);
+
+                    var phys230courseTime = document.createElement("div");
+                    var phys230time = document.createTextNode("TTH 1:30PM - 3:00PM");
+                    phys230courseTime.style.position = "absolute";
+                    phys230courseTime.style.textAlign = "left";
+                    phys230courseTime.style.left = "450px";
+                    phys230courseTime.style.top = "10px";
+                    phys230courseTime.appendChild(phys230time);
+
+                    phys230.appendChild(phys230courseName);
+                    phys230.appendChild(phys230courseTitle);
+                    phys230.appendChild(phys230numUnits);
+                    phys230.appendChild(phys230courseTime);
+
+                    // Phys 232 Button
+
+                    var phys232 = document.createElement("BUTTON");
+                    phys232.style.color = "black";
+                    phys232.style.backgroundColor = "antiquewhite";
+                    phys232.style.border = "none";
+                    phys232.style.outline = "none";
+                    phys232.style.padding = "10px";
+                    phys232.style.width = "800px";
+                    phys232.style.height = "45px";
+                    phys232.style.position = "absolute";
+                    phys232.style.left = "25px";
+                    phys232.style.top = "330px";
+                    phys232.draggable = "true";
+
+                    var phys232courseName = document.createElement("div");
+                    var phys232name = document.createTextNode("Phys 232");
+                    phys232courseName.style.position = "absolute";
+                    phys232courseName.style.textAlign = "left";
+                    phys232courseName.style.left = "20px";
+                    phys232courseName.style.top = "10px";
+                    phys232courseName.appendChild(phys232name);
+
+                    var phys232courseTitle = document.createElement("div");
+                    var phys232title = document.createTextNode("Electricity and Magnetism - Lab");
+                    phys232courseTitle.style.position = "absolute";
+                    phys232courseTitle.style.textAlign = "left";
+                    phys232courseTitle.style.left = "250px";
+                    phys232courseTitle.style.top = "10px";
+                    phys232courseTitle.appendChild(phys232title);
+
+                    var phys232numUnits = document.createElement("div");
+                    var phys232units = document.createTextNode("4");
+                    phys232numUnits.style.position = "absolute";
+                    phys232numUnits.style.textAlign = "left";
+                    phys232numUnits.style.left = "680px";
+                    phys232numUnits.style.top = "10px";
+                    phys232numUnits.appendChild(phys232units);
+
+                    var phys232courseTime = document.createElement("div");
+                    var phys232time = document.createTextNode("F 2:00PM - 5:00PM");
+                    phys232courseTime.style.position = "absolute";
+                    phys232courseTime.style.textAlign = "left";
+                    phys232courseTime.style.left = "450px";
+                    phys232courseTime.style.top = "10px";
+                    phys232courseTime.appendChild(phys232time);
+
+                    phys232.appendChild(phys232courseName);
+                    phys232.appendChild(phys232courseTitle);
+                    phys232.appendChild(phys232numUnits);
+                    phys232.appendChild(phys232courseTime);
+
+                    ev.target.appendChild(math325);
+                    ev.target.appendChild(phys232);
+                    ev.target.appendChild(phys230);
+                    ev.target.appendChild(phys222);
+
+
+
+                    emptyOfferings = false;
+                }
+            }
+        </script>
+
+        <style>
+            /* Remove the navbar's default margin-bottom and rounded borders */
+            .navbar {
+                margin-bottom: 0;
+                border-radius: 0;
+            }
+
+            /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+            .row.content {height: 450px}
+
+            /* Set gray background color and 100% height */
+            .sidenav {
+                padding-top: 20px;
+                background-color: #f1f1f1;
+                height: auto;
+            }
+
+            /* Set black background color, white text and some padding */
+            footer {
+                background-color: #555;
+                color: white;
+                padding: 15px;
+            }
+
+            /* On small screens, set height to 'auto' for sidenav and grid */
+            @media screen and (max-width: 767px) {
+                .sidenav {
+                    height: auto;
+                    padding: 15px;
+                }
+                .row.content {height:auto;}
+            }
+
+            /* This creates a header button using text */
+            .headerbutton {
+                background: #475233;
+                border: solid gray;
+                margin:5px;
+                padding:5px;
+                font-size:150%;
+                color: white;
+                text-align: left;
+                outline: none;
+            }
+
+            .subheaderbutton {
+                border-left: none;
+                border-right: none;
+                border-top: none;
+                border-bottom: solid;
+                background: none;
+                font-size: 100%;
+                text-indent: 0;
+                padding: 2px;
+                margin: 5px;
+                text-align: left;
+                width: 150px;
+                float: left;
+                overflow: hidden;
+                outline:none;
+            }
+
+            .courses {
+                border: none;
+                background: none;
+                font-size: 100%;
+                text-indent: 20px;
+                padding: 2px;
+                margin: 5px;
+                text-align: left;
+                width: 150px;
+                float: left;
+                overflow: hidden;
+                outline:none;
+                text-decoration: none;
+                color: black;
+
+              
+            }
+
+            /* Grayed out text*/
+            .graytext {
+                font-size: 125%;
+                color:gray;
+            }
+
+            /* Grayed out text with dashed outline*/
+            .graytext2 {
+                font-size: 125%;
+                color:gray;
+                border: dashed;
+                border-radius: 10px;
+                height: 500px;
+                text-align: center;
+                padding-top: 200px;
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+
+            .graytext3 {
+                font-size: 125%;
+                color:gray;
+                border: dashed;
+                border-radius: 10px;
+                height: 450px;
+                text-align: center;
+                padding-top: 200px;
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+
+            .checkmark {
+                color: green;
+                text-align:right; 
+                padding-top: 8px;
+                padding-right: 5px;
+                float: right;
+                overflow: hidden;
+            }
+
+            .xmark {
+                color: red;
+                text-align:right; 
+                padding-top: 10px;
+                padding-right: 5px;
+                float: right;
+                overflow: hidden;
+            }
+
+            .subheader {
+                margin-left: 5px;
+                margin-right: 5px;
+                background: darkgrey;
+            }
+
+        </style>
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand mb-0">Requirements</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a class="navbar-brand mb-0">Schedule</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row content">
+                <div class="col-sm-2 sidenav">
+
+                    <!-- Computer Science requirements section -->
+                    <button type="button" class="headerbutton" data-toggle="collapse" data-target="#csreq"> <b>Computer Science</b> </button>
+                    <div id="csreq" class="collapse">
+
+                        <div id="math" draggable="true" ondragstart="drag(event)">
+                            <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#mathPhys"><b>Mathematics and Physics</b> (22 units)</button>
+                            <p class = "xmark"> &#x2717; </p>
+                            <div style="clear: both"> </div>
+
+                            <div id="mathPhys" class="collapse">
+                                <div> 
+                                    <a href="javascript:window.open('courseInfo.html','mywindowtitle','width=800,height=550')"><button type="button" class="courses">MATH 226 (4)</button>
+                                    </a>
+
+                                    <p class = "checkmark"> &#x2714; </p>
+                                </div>
+                                <div style="clear: both"> </div>
+
+                                <div> 
+                                    <button type="button" class="courses">MATH 227 (4)</button>
+                                    <p class = "checkmark"> &#x2714; </p>
+                                </div>
+                                <div style="clear: both"> </div>    
+
+                                <div> 
+                                    <button type="button" class="courses">MATH 324 (3)</button>
+                                    <p class = "checkmark"> &#x2714; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div> 
+                                    <button type="button" class="courses">MATH 325 (3)</button>
+                                    <p class = "xmark"> &#x2717; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div> 
+                                    <button type="button" class="courses">PHYS 220 (3)</button>
+                                    <p class = "checkmark"> &#x2714; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div> 
+                                    <button type="button" class="courses">PHYS 222 (1)</button>
+                                    <p class = "xmark"> &#x2717; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div> 
+                                    <button type="button" class="courses">PHYS 230 (3)</button>
+                                    <p class = "xmark"> &#x2717; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div> 
+                                    <button type="button" class="courses">PHYS 232 (1)</button>
+                                    <p class = "xmark"> &#x2717; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+                            </div>
+                        </div>
+
+                        <div id="sci" draggable="true" ondragstart="drag(event)">
+                            <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#science">
+                                <b>Science Elective</b> (3 units) </button>
+                            <p class = "checkmark"> &#x2714; </p>
+                            <div style="clear: both"> </div> 
+
+                            <div id="science" class="collapse">
+                                <div>
+                                    <button type="button" class="courses">BIOL 100 (3)</button>
+                                    <p class="checkmark"> &#x2714; </p>
+                                </div> 
+                                <div style="clear: both"> </div> 
+
+                                <div>
+                                    <button type="button" class="courses">BIOL 176 (3)</button>
+                                </div> 
+                                <div style="clear: both"> </div> 
+                            </div>
+
+                        </div>
+
+                        <div id="core" draggable="true" ondragstart="drag(event)">
+                            <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#coreCS">
+                                <b>Core Computer Science</b> (22 units) 
+                            </button>
+                            <p class = "checkmark"> &#x2714; </p>
+                            <div style="clear: both"> </div> 
+
+                            <div id="coreCS" class="collapse"> 
+                                <div>
+                                    <button type="button" class="courses">CSC 210 (3)</button>
+                                    <p class="checkmark"> &#x2714; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div>
+                                    <button type="button" class="courses">CSC 220 (3)</button>
+                                    <p class="checkmark"> &#x2714; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div> 
+                                    <button type="button" class="courses">CSC 230 (3)</button>
+                                    <p class="checkmark"> &#x2714; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div> 
+                                    <button type="button" class="courses">CSC 256 (3)</button>
+                                    <p class="checkmark"> &#x2714; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div> 
+                                    <button type="button" class="courses">CSC 300GW (3)</button>
+                                    <p class="checkmark"> &#x2714; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div> 
+                                    <button type="button" class="courses">CSC 340 (3)</button>
+                                    <p class="checkmark"> &#x2714; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div> 
+                                    <button type="button" class="courses">CSC 412 (1)</button>
+                                    <p class="checkmark"> &#x2714; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div> 
+                                    <button type="button" class="courses">CSC 413 (3)</button>
+                                    <p class="checkmark"> &#x2714; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+                            </div>
+                        </div>
+
+                        <div id="adv" draggable="true" ondragstart="drag(event)">
+                            <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#advCS">
+                                <b>Advanced Computer Science </b> (24 units) 
+                            </button>
+                            <p class = "xmark"> &#x2717; </p>
+                            <div style="clear: both"> </div> 
+
+                            <div id="advCS" class="collapse"> 
+                                <div>
+                                    <button type="button" class="courses">CSC 415 (3)</button>
+                                    <p class="checkmark"> &#x2714; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div>
+                                    <button type="button" class="courses">CSC 510 (3)</button>
+                                    <p class="checkmark"> &#x2714; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div>
+                                    <button type="button" class="courses">CSC 600 (3)</button>
+                                    <p class="xmark"> &#x2717; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div>
+                                    <button type="button" class="courses">CSC 648 (3)</button>
+                                    <p class="xmark"> &#x2717; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div>
+                                    <button type="button" class="courses">CSC 520 (3)</button>
+                                    <p class="checkmark"> &#x2714; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div>
+                                    <button type="button" class="courses">CSC 656 (3)</button>
+                                    <p class="xmark"> &#x2717; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div>
+                                    <button type="button" class="courses">CSC 675 (3)</button>
+                                    <p class="checkmark"> &#x2714; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                                <div>
+                                    <button type="button" class="courses">CSC 668 (3)</button>
+                                    <p class="xmark"> &#x2717; </p>
+                                </div>
+                                <div style="clear: both"> </div> 
+
+                            </div>
+                        </div>
                     </div>
                     <div style="clear: both"> </div>
 
-                    <div> 
-                        <button type="button" class="courses">MATH 227 (4)</button>
-                        <p class = "checkmark"> &#x2714; </p>
-                    </div>
-                    <div style="clear: both"> </div>    
+                    <!-- Lower division GE requirements section -->
+                    <button type="button" class="headerbutton" data-toggle="collapse" data-target="#lowerge"> <b>Lower Division General Education</b></button>
+                    <div id="lowerge" class="collapse">
+                        <div>
+                            <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#areaA"> 
+                                <b>Area A:</b> English Language Communication and Critical Thinking <br>
+                            </button>
+                            <p class = "checkmark"> &#x2714; </p>
 
-                    <div> 
-                        <button type="button" class="courses">MATH 324 (3)</button>
-                        <p class = "checkmark"> &#x2714; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
+                        </div>
+                        <div style="clear: both"> </div>
 
-                    <div> 
-                        <button type="button" class="courses">MATH 325 (3)</button>
-                        <p class = "xmark"> &#x2717; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
+                        <div>
+                            <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#areaB"> 
+                                <b>Area B:</b> Scientific Inquiry and Quantitative Reasoning <br>
+                            </button>
+                            <p class = "xmark"> &#x2717; </p>
+                        </div>
+                        <div style="clear: both"> </div>
 
-                    <div> 
-                        <button type="button" class="courses">PHYS 220 (3)</button>
-                        <p class = "checkmark"> &#x2714; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
+                        <div>
+                            <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#areaC"> 
+                                <b>Area C:</b> Arts and Humanities <br> 
+                            </button>
+                            <p class = "xmark"> &#x2717; </p>
+                        </div>
+                        <div style="clear: both"> </div>
 
-                    <div> 
-                        <button type="button" class="courses">PHYS 222 (1)</button>
-                        <p class = "xmark"> &#x2717; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
+                        <div>
+                            <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#areaD"> 
+                                <b>Area D:</b> Social Sciences <br> 
+                            </button>
+                            <p class = "checkmark"> &#x2714; </p>
+                        </div>
+                        <div style="clear: both"> </div>
 
-                    <div> 
-                        <button type="button" class="courses">PHYS 230 (3)</button>
-                        <p class = "xmark"> &#x2717; </p>
+                        <div>
+                            <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#areaE"> 
+                                <b>Area E:</b> Lifelong Learning and Self-development <br> 
+                            </button>
+                            <p class = "checkmark"> &#x2714; </p>
+                        </div>
+                        <div style="clear: both"> </div>
                     </div>
-                    <div style="clear: both"> </div> 
 
-                    <div> 
-                        <button type="button" class="courses">PHYS 232 (1)</button>
-                        <p class = "xmark"> &#x2717; </p>
+                    <!-- Upper division GE requirements section -->
+                    <button type="button" class="headerbutton" data-toggle="collapse" data-target="#upperge"> <b>Upper Division General Education</b> </button>
+                    <div id="upperge" class="collapse">
+
+                        <div>
+                            <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#UDB"> 
+                                <b>UD-B:</b> Upper Division Physical and/or Life Sciences <br> 
+                            </button>
+                            <p class = "xmark"> &#x2717; </p>
+                        </div>
+                        <div style="clear: both"> </div>
+
+                        <div>
+                            <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#UDC"> 
+                                <b>UD-C:</b> Upper Division Arts and/or Humanities <br> 
+                            </button>
+                            <p class = "checkmark"> &#x2714; </p>
+                        </div>
+                        <div style="clear: both"> </div>
+
+                        <div>
+                            <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#UDD"> 
+                                <b>UD-D:</b> Upper Division Social Sciences <br> 
+                            </button>
+                            <p class = "xmark"> &#x2717; </p>
+                        </div>
+                        <div style="clear: both"> </div>
+
                     </div>
-                    <div style="clear: both"> </div> 
+
                 </div>
-            </div>
-            
-            <div id="sci" draggable="true" ondragstart="drag(event)">
-                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#science">
-                        <b>Science Elective</b> (3 units) </button>
-                <p class = "checkmark"> &#x2714; </p>
-                <div style="clear: both"> </div> 
-                
-                <div id="science" class="collapse">
-                    <div>
-                        <button type="button" class="courses">BIOL 100 (3)</button>
-                        <p class="checkmark"> &#x2714; </p>
-                    </div> 
-                    <div style="clear: both"> </div> 
-                    
-                    <div>
-                        <button type="button" class="courses">BIOL 176 (3)</button>
-                    </div> 
-                    <div style="clear: both"> </div> 
+                <div class="col-sm-8 text-left" id="target" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <h1> <b> Spring 2017 Course Offerings </b></h1>
+                    <p id="text" class="graytext3"> Please begin by dragging a section from the left</p>
                 </div>
-                
-            </div>
-            
-            <div id="core" draggable="true" ondragstart="drag(event)">
-                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#coreCS">
-                    <b>Core Computer Science</b> (22 units) 
-                </button>
-                <p class = "checkmark"> &#x2714; </p>
-                <div style="clear: both"> </div> 
-                
-                <div id="coreCS" class="collapse"> 
-                    <div>
-                        <button type="button" class="courses">CSC 210 (3)</button>
-                        <p class="checkmark"> &#x2714; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
-                
-                    <div>
-                        <button type="button" class="courses">CSC 220 (3)</button>
-                        <p class="checkmark"> &#x2714; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
-                
-                    <div> 
-                        <button type="button" class="courses">CSC 230 (3)</button>
-                        <p class="checkmark"> &#x2714; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
-                
-                    <div> 
-                        <button type="button" class="courses">CSC 256 (3)</button>
-                        <p class="checkmark"> &#x2714; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
-                
-                    <div> 
-                        <button type="button" class="courses">CSC 300GW (3)</button>
-                        <p class="checkmark"> &#x2714; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
-                
-                    <div> 
-                        <button type="button" class="courses">CSC 340 (3)</button>
-                        <p class="checkmark"> &#x2714; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
-                
-                    <div> 
-                        <button type="button" class="courses">CSC 412 (1)</button>
-                        <p class="checkmark"> &#x2714; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
-                
-                    <div> 
-                        <button type="button" class="courses">CSC 413 (3)</button>
-                        <p class="checkmark"> &#x2714; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
-                </div>
-            </div>
-            
-            <div id="adv" draggable="true" ondragstart="drag(event)">
-                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#advCS">
-                    <b>Advanced Computer Science </b> (24 units) 
-                 </button>
-                <p class = "xmark"> &#x2717; </p>
-                <div style="clear: both"> </div> 
-                
-                <div id="advCS" class="collapse"> 
-                    <div>
-                        <button type="button" class="courses">CSC 415 (3)</button>
-                        <p class="checkmark"> &#x2714; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
-                    
-                    <div>
-                        <button type="button" class="courses">CSC 510 (3)</button>
-                        <p class="checkmark"> &#x2714; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
-                    
-                    <div>
-                        <button type="button" class="courses">CSC 600 (3)</button>
-                        <p class="xmark"> &#x2717; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
-                    
-                    <div>
-                        <button type="button" class="courses">CSC 648 (3)</button>
-                        <p class="xmark"> &#x2717; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
-                    
-                    <div>
-                        <button type="button" class="courses">CSC 520 (3)</button>
-                        <p class="checkmark"> &#x2714; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
-
-                    <div>
-                        <button type="button" class="courses">CSC 656 (3)</button>
-                        <p class="xmark"> &#x2717; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
-
-                    <div>
-                        <button type="button" class="courses">CSC 675 (3)</button>
-                        <p class="checkmark"> &#x2714; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
-
-                    <div>
-                        <button type="button" class="courses">CSC 668 (3)</button>
-                        <p class="xmark"> &#x2717; </p>
-                    </div>
-                    <div style="clear: both"> </div> 
-                    
+                <div class="col-sm-2 sidenav" id = "scheduleTarget" ondrop="dropSchedule(event)" ondragover="allowDrop(event)">
+                    <p id = "scheduleText" class= "graytext2"> Drag courses here to view in schedule </p>
                 </div>
             </div>
         </div>
-        <div style="clear: both"> </div>
 
-        <!-- Lower division GE requirements section -->
-        <button type="button" class="headerbutton" data-toggle="collapse" data-target="#lowerge"> <b>Lower Division General Education</b></button>
-        <div id="lowerge" class="collapse">
-            <div>
-                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#areaA"> 
-                    <b>Area A:</b> English Language Communication and Critical Thinking <br>
-                </button>
-                <p class = "checkmark"> &#x2714; </p>
-                
-            </div>
-            <div style="clear: both"> </div>
-            
-            <div>
-                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#areaB"> 
-                    <b>Area B:</b> Scientific Inquiry and Quantitative Reasoning <br>
-                </button>
-                <p class = "xmark"> &#x2717; </p>
-            </div>
-            <div style="clear: both"> </div>
-            
-            <div>
-                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#areaC"> 
-                    <b>Area C:</b> Arts and Humanities <br> 
-                </button>
-                <p class = "xmark"> &#x2717; </p>
-            </div>
-            <div style="clear: both"> </div>
-            
-            <div>
-                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#areaD"> 
-                    <b>Area D:</b> Social Sciences <br> 
-                    </button>
-                <p class = "checkmark"> &#x2714; </p>
-            </div>
-            <div style="clear: both"> </div>
-            
-            <div>
-                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#areaE"> 
-                    <b>Area E:</b> Lifelong Learning and Self-development <br> 
-                </button>
-                <p class = "checkmark"> &#x2714; </p>
-            </div>
-            <div style="clear: both"> </div>
-        </div>
+        <footer class="container-fluid text-center">
+            <p>CSC 642 Human Computer Interaction Project - Fall 2016</p>
+        </footer>
 
-        <!-- Upper division GE requirements section -->
-        <button type="button" class="headerbutton" data-toggle="collapse" data-target="#upperge"> <b>Upper Division General Education</b> </button>
-        <div id="upperge" class="collapse">
-            
-            <div>
-                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#UDB"> 
-                    <b>UD-B:</b> Upper Division Physical and/or Life Sciences <br> 
-                </button>
-                <p class = "xmark"> &#x2717; </p>
-            </div>
-            <div style="clear: both"> </div>
-            
-            <div>
-                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#UDC"> 
-                    <b>UD-C:</b> Upper Division Arts and/or Humanities <br> 
-                </button>
-                <p class = "checkmark"> &#x2714; </p>
-            </div>
-            <div style="clear: both"> </div>
-            
-            <div>
-                <button type="button" class = "subheaderbutton" data-toggle="collapse" data-target="#UDD"> 
-                    <b>UD-D:</b> Upper Division Social Sciences <br> 
-                </button>
-                <p class = "xmark"> &#x2717; </p>
-            </div>
-            <div style="clear: both"> </div>
-                
-        </div>
-        
-    </div>
-    <div class="col-sm-8 text-left" id="target" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <h1> <b> Spring 2017 Course Offerings </b></h1>
-        <p id="text" class="graytext3"> Please begin by dragging a section from the left</p>
-    </div>
-    <div class="col-sm-2 sidenav" id = "scheduleTarget" ondrop="dropSchedule(event)" ondragover="allowDrop(event)">
-	   <p id = "scheduleText" class= "graytext2"> Drag courses here to view in schedule </p>
-    </div>
-  </div>
-</div>
-
-<footer class="container-fluid text-center">
-    <p>CSC 642 Human Computer Interaction Project - Fall 2016</p>
-</footer>
-
-</body>
+    </body>
 </html>
 
 
