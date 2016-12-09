@@ -48,15 +48,15 @@
 
                 //Placeholder Image
                 var x = document.createElement("IMG");
-                x.setAttribute("src", "placeholder.jpg");
+                x.setAttribute("src", "scheduler.png");
                 x.setAttribute("width", "290");
-                x.setAttribute("height", "437.5");
+                x.setAttribute("height", "460");
                 x.setAttribute("alt", "placeholder");
                 document.body.appendChild(x);
                 x.style.position = "absolute";
                 x.style.top = "75px";
                 x.style.left = "15px";
-
+                
                 // Registration button
                 var reg = document.createElement("BUTTON");
                 reg.style.color = "black";
@@ -68,7 +68,7 @@
                 reg.style.height = "45px";
                 reg.style.position = "absolute";
                 reg.style.left = "185px";
-                reg.style.top = "540px";
+                reg.style.top = "560px";
 
                 // Registration button text
                 var header = document.createElement("div");
@@ -92,7 +92,7 @@
                 clr.style.height = "45px";
                 clr.style.position = "absolute";
                 clr.style.left = "60px";
-                clr.style.top = "540px";
+                clr.style.top = "560px";
 
                 // Clear button text
                 var header = document.createElement("div");
@@ -113,7 +113,6 @@
                 ev.target.appendChild(reg);
                 header.style.clear = "both";
 
-
             }
 
             function drop(ev) {
@@ -122,8 +121,10 @@
 
                 if (Boolean(emptyOfferings)) {
                     ev.target.removeChild(ev.target.childNodes[1]);
-                    
                     ev.target.removeChild(ev.target.childNodes[2]);
+                    ev.target.removeChild(ev.target.childNodes[3]);
+                    ev.target.removeChild(ev.target.childNodes[4]);
+                    
                     ev.target.style.border = "none";
                 }
 
@@ -133,29 +134,29 @@
                 var title1 = document.createTextNode("Course");
                 p1.appendChild(title1);
                 p1.style.position = "absolute";
-                p1.style.top = "100px";
-                p1.style.left = "45px";
+                p1.style.top = "150px";
+                p1.style.left = "40px";
 
                 var p2 = document.createElement("p");
                 var title2 = document.createTextNode("Title");
                 p2.appendChild(title2);
                 p2.style.position = "absolute";
-                p2.style.top = "100px";
-                p2.style.left = "275px";
+                p2.style.top = "150px";
+                p2.style.left = "160px";
 
                 var p3 = document.createElement("p");
                 var title3 = document.createTextNode("Units");
                 p3.appendChild(title3);
                 p3.style.position = "absolute";
-                p3.style.top = "100px";
-                p3.style.left = "700px";
+                p3.style.top = "150px";
+                p3.style.left = "670px";
 
                 var p4 = document.createElement("p");
                 var title4 = document.createTextNode("Time");
                 p4.appendChild(title4);
                 p4.style.position = "absolute";
-                p4.style.top = "100px";
-                p4.style.left = "500px";
+                p4.style.top = "150px";
+                p4.style.left = "450px";
 
                 header.appendChild(p1);
                 header.appendChild(p2);
@@ -175,11 +176,11 @@
                     math325.style.border = "none";
                     math325.style.outline = "none";
                     math325.style.padding = "10px";
-                    math325.style.width = "800px";
+                    math325.style.width = "700px";
                     math325.style.height = "45px";
                     math325.style.position = "absolute";
                     math325.style.left = "25px";
-                    math325.style.top = "150px";
+                    math325.style.top = "190px";
                     math325.draggable = "true";
 
                     var math325Name = document.createElement("div");
@@ -188,30 +189,34 @@
                     math325Name.style.textAlign = "left";
                     math325Name.style.left = "20px";
                     math325Name.style.top = "10px";
+                    math325Name.style.fontSize="80%";
                     math325Name.appendChild(name);
 
                     var courseTitle = document.createElement("div");
                     var title = document.createTextNode("Linear Algebra");
                     courseTitle.style.position = "absolute";
                     courseTitle.style.textAlign = "left";
-                    courseTitle.style.left = "250px";
+                    courseTitle.style.left = "140px";
                     courseTitle.style.top = "10px";
+                    courseTitle.style.fontSize="80%";
                     courseTitle.appendChild(title);
 
                     var numUnits = document.createElement("div");
                     var units = document.createTextNode("4");
                     numUnits.style.position = "absolute";
                     numUnits.style.textAlign = "left";
-                    numUnits.style.left = "680px";
+                    numUnits.style.left = "650px";
                     numUnits.style.top = "10px";
+                    numUnits.style.fontSize="80%";
                     numUnits.appendChild(units);
 
                     var courseTime = document.createElement("div");
                     var time = document.createTextNode("MWF 1:00PM - 2:00PM");
                     courseTime.style.position = "absolute";
                     courseTime.style.textAlign = "left";
-                    courseTime.style.left = "450px";
+                    courseTime.style.left = "430px";
                     courseTime.style.top = "10px";
+                    courseTime.style.fontSize="80%";
                     courseTime.appendChild(time);
 
                     math325.appendChild(math325Name);
@@ -226,11 +231,11 @@
                     phys222.style.border = "none";
                     phys222.style.outline = "none";
                     phys222.style.padding = "10px";
-                    phys222.style.width = "800px";
+                    phys222.style.width = "700px";
                     phys222.style.height = "45px";
                     phys222.style.position = "absolute";
                     phys222.style.left = "25px";
-                    phys222.style.top = "210px";
+                    phys222.style.top = "250px";
                     phys222.draggable = "true";
 
                     var phys222courseName = document.createElement("div");
@@ -239,30 +244,34 @@
                     phys222courseName.style.textAlign = "left";
                     phys222courseName.style.left = "20px";
                     phys222courseName.style.top = "10px";
+                    phys222courseName.style.fontSize="80%";
                     phys222courseName.appendChild(phys222name);
 
                     var phys222courseTitle = document.createElement("div");
                     var phys222title = document.createTextNode("General Phys with Calculus I - Lab");
                     phys222courseTitle.style.position = "absolute";
                     phys222courseTitle.style.textAlign = "left";
-                    phys222courseTitle.style.left = "250px";
+                    phys222courseTitle.style.left = "140px";
                     phys222courseTitle.style.top = "10px";
+                    phys222courseTitle.style.fontSize="80%";
                     phys222courseTitle.appendChild(phys222title);
 
                     var phys222numUnits = document.createElement("div");
                     var phys222units = document.createTextNode("4");
                     phys222numUnits.style.position = "absolute";
                     phys222numUnits.style.textAlign = "left";
-                    phys222numUnits.style.left = "680px";
+                    phys222numUnits.style.left = "650px";
                     phys222numUnits.style.top = "10px";
+                    phys222numUnits.style.fontSize="80%";
                     phys222numUnits.appendChild(phys222units);
 
                     var phys222courseTime = document.createElement("div");
                     var phys222time = document.createTextNode("T 1:00PM - 4:00PM");
                     phys222courseTime.style.position = "absolute";
                     phys222courseTime.style.textAlign = "left";
-                    phys222courseTime.style.left = "450px";
+                    phys222courseTime.style.left = "430px";
                     phys222courseTime.style.top = "10px";
+                    phys222courseTime.style.fontSize="80%";
                     phys222courseTime.appendChild(phys222time);
 
                     phys222.appendChild(phys222courseName);
@@ -278,11 +287,11 @@
                     phys230.style.border = "none";
                     phys230.style.outline = "none";
                     phys230.style.padding = "10px";
-                    phys230.style.width = "800px";
+                    phys230.style.width = "700px";
                     phys230.style.height = "45px";
                     phys230.style.position = "absolute";
                     phys230.style.left = "25px";
-                    phys230.style.top = "270px";
+                    phys230.style.top = "310px";
                     phys230.draggable = "true";
 
                     var phys230courseName = document.createElement("div");
@@ -291,30 +300,34 @@
                     phys230courseName.style.textAlign = "left";
                     phys230courseName.style.left = "20px";
                     phys230courseName.style.top = "10px";
+                    phys230courseName.style.fontSize="80%";
                     phys230courseName.appendChild(phys230name);
 
                     var phys230courseTitle = document.createElement("div");
                     var phys230title = document.createTextNode("Electricity and Magnetism");
                     phys230courseTitle.style.position = "absolute";
                     phys230courseTitle.style.textAlign = "left";
-                    phys230courseTitle.style.left = "250px";
+                    phys230courseTitle.style.left = "140px";
                     phys230courseTitle.style.top = "10px";
+                    phys230courseTitle.style.fontSize="80%";
                     phys230courseTitle.appendChild(phys230title);
 
                     var phys230numUnits = document.createElement("div");
                     var phys230units = document.createTextNode("4");
                     phys230numUnits.style.position = "absolute";
                     phys230numUnits.style.textAlign = "left";
-                    phys230numUnits.style.left = "680px";
+                    phys230numUnits.style.left = "650px";
                     phys230numUnits.style.top = "10px";
+                    phys230numUnits.style.fontSize="80%";
                     phys230numUnits.appendChild(phys230units);
 
                     var phys230courseTime = document.createElement("div");
                     var phys230time = document.createTextNode("TTH 1:30PM - 3:00PM");
                     phys230courseTime.style.position = "absolute";
                     phys230courseTime.style.textAlign = "left";
-                    phys230courseTime.style.left = "450px";
+                    phys230courseTime.style.left = "430px";
                     phys230courseTime.style.top = "10px";
+                    phys230courseTime.style.fontSize="80%";
                     phys230courseTime.appendChild(phys230time);
 
                     phys230.appendChild(phys230courseName);
@@ -330,11 +343,11 @@
                     phys232.style.border = "none";
                     phys232.style.outline = "none";
                     phys232.style.padding = "10px";
-                    phys232.style.width = "800px";
+                    phys232.style.width = "700px";
                     phys232.style.height = "45px";
                     phys232.style.position = "absolute";
                     phys232.style.left = "25px";
-                    phys232.style.top = "330px";
+                    phys232.style.top = "370px";
                     phys232.draggable = "true";
 
                     var phys232courseName = document.createElement("div");
@@ -343,30 +356,34 @@
                     phys232courseName.style.textAlign = "left";
                     phys232courseName.style.left = "20px";
                     phys232courseName.style.top = "10px";
+                    phys232courseName.style.fontSize="80%";
                     phys232courseName.appendChild(phys232name);
 
                     var phys232courseTitle = document.createElement("div");
                     var phys232title = document.createTextNode("Electricity and Magnetism - Lab");
                     phys232courseTitle.style.position = "absolute";
                     phys232courseTitle.style.textAlign = "left";
-                    phys232courseTitle.style.left = "250px";
+                    phys232courseTitle.style.left = "140px";
                     phys232courseTitle.style.top = "10px";
+                    phys232courseTitle.style.fontSize="80%";
                     phys232courseTitle.appendChild(phys232title);
 
                     var phys232numUnits = document.createElement("div");
                     var phys232units = document.createTextNode("4");
                     phys232numUnits.style.position = "absolute";
                     phys232numUnits.style.textAlign = "left";
-                    phys232numUnits.style.left = "680px";
+                    phys232numUnits.style.left = "650px";
                     phys232numUnits.style.top = "10px";
+                    phys232numUnits.style.fontSize="80%";
                     phys232numUnits.appendChild(phys232units);
 
                     var phys232courseTime = document.createElement("div");
                     var phys232time = document.createTextNode("F 2:00PM - 5:00PM");
                     phys232courseTime.style.position = "absolute";
                     phys232courseTime.style.textAlign = "left";
-                    phys232courseTime.style.left = "450px";
+                    phys232courseTime.style.left = "430px";
                     phys232courseTime.style.top = "10px";
+                    phys232courseTime.style.fontSize="80%";
                     phys232courseTime.appendChild(phys232time);
 
                     phys232.appendChild(phys232courseName);
@@ -426,7 +443,7 @@
             /* This creates a header button using text */
             .headerbutton {
                 background: #475233;
-                border: solid gray;
+                border: none;
                 margin:5px;
                 padding:5px;
                 font-size:150%;
@@ -494,7 +511,7 @@
                 color:gray;
                 border: dashed;
                 border-radius: 10px;
-                height: 520px;
+                height: 455px;
                 text-align: center;
                 padding-top: 150px;
                 padding-right: 15px;
@@ -832,18 +849,22 @@
                 </div>
                 <div class="col-sm-7 text-left" id="target" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <h1> <b> Spring 2017 Course Offerings </b></h1>
+                    <img src="Dept.png" alt="Dept" style="width:275px;height:50px;margin-top:20px;margin-left:50px;margin-right:50px;">
+                    <img src="Filter.png" alt="Filter" style="margin-top:20px;width:275px;height:50px;">
+                    
+                    
                     <div id="text" class="graytext3"> 
-                        <p>1. Click on left categories to browse your completed and uncompleted degree requirements</p>
-                        <p>2. Drag unfulfilled requirements to this section to view relevant Spring 2017 course offerings</p>
-                        <p>3. Drag desired courses to schedule on right to view a week at a glance </p>
-                        <p>4. Click "Register" when schedule has been perfected </p>
+                        <p><b>To view unfulfilled classes</b> click on left categories</p>
+                        <p><b>To browse current offerings</b> drag unfulfilled requirements here</p>
+                        <p><b>To view tentative schedule</b> drag desired courses to schedule on right</p>
+                        <p><b>To enroll</b> click "Register" when schedule has been perfected </p>
                     </div>
                 </div>
                 <div class="col-sm-3 sidenav" style="height:620px" id = "scheduleTarget" ondrop="dropSchedule(event)" ondragover="allowDrop(event)">
                     <center>
                     <h3 style="margin-top:10px;margin-bottom:20px"> Proposed Schedule</h3>
                     </center>
-                    <p id = "scheduleText" class= "graytext2"> Drag courses here to simultaneously view in schedule </p>
+                    <p id = "scheduleText" class= "graytext2"> Drag courses here to view in schedule </p>
                 </div>
             </div>
         </div>
